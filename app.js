@@ -46,7 +46,7 @@ app.post('/playgrounds', async (req, res) => {
 // Show single Playground
 
 app.get('/playgrounds/:id', async (req, res,) => {
-    const campground = await Playground.findById(req.params.id)
+    const playground = await Playground.findById(req.params.id)
     res.render('playgrounds/show', { playground });
 });
 
