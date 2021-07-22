@@ -1,6 +1,12 @@
 <a href="/playgrounds/<%=playground._id%>">
     <div class="card hover:shadow-lg cursor-pointer">
-        <img src="<%=playground.image %>" alt="playground image" class="w-full h-32 sm:h-48 object-cover" />
+             <%if(playground.image) {%>
+                <img src="<%=playground.image %>" alt="playground image" class="w-full h-32 sm:h-48 object-cover" />
+                <% }else {%>
+                <img class="object-cover w-full h-32 sm:h-48" alt="playground image"
+                    src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">
+                <% } %>
+        
         <div class="m-4">
             <span class="font-bold ">
                 <%=playground.title %>
@@ -11,8 +17,11 @@
         </div>
         <div class="badge flex items-center">
             <span class="pr-1">
+                <%if(playground.image) {%>
                 <%=playground.likes %>
-
+                <%}else{%>
+                 0
+                 <%}%>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-primary" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
