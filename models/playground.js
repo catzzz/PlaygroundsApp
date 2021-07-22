@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const PlaygroundSchema = new Schema({
     title: String,
-    rates: String,
+    likes: String,
     image: String,
     description: String,
     location: String

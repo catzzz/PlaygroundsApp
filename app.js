@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
 // Playground list
 app.get('/playgrounds', async (req, res) => {
     const playgrounds = await Playground.find({});
+    
     res.render('playgrounds/index', { playgrounds })
 });
 
