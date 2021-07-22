@@ -39,7 +39,7 @@ app.get('/playgrounds/new', (req, res) => {
 
 // Add new Playground api
 app.post('/playgrounds', async (req, res) => {
-    const playground = new Campground(req.body.playground);
+    const playground = new Playground(req.body.playground);
     await playground.save();
     res.redirect(`/playgrounds/${playground._id}`)
 })

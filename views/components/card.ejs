@@ -1,0 +1,18 @@
+<a href="/playgrounds/<%=playground._id%>">
+    <div class="card hover:shadow-lg cursor-pointer">
+        <img src="<%=playground.image %>" alt="playground image" class="w-full h-32 sm:h-48 object-cover" />
+        <div class="m-4">
+            <span class="font-bold ">
+                <%=playground.title %>
+            </span>
+            <span class="block text-gray-500">
+                <%=playground.location %>
+            </span>
+        </div>
+        <div class="badge">
+            <span>
+                <%=playground.rates %>
+            </span>
+        </div>
+    </div>
+</a>
