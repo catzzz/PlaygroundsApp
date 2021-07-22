@@ -1,10 +1,9 @@
 <% layout('layouts/boilerplate')%>
-<div><a href="/playgrounds/new"> Add playground</a></div>
-<div class="grid grid-cols-3 mt-8 gap-10">
+
+    <div class="grid grid-cols-3 mt-8 gap-10">
 
 
-<% for (let playground of playgrounds){%>
-
-    <%- include('../components/card',{playground:playground})%>
-<% }%>
-</div>
+        <% for (let playground of playgrounds){%>
+            <%- include('../components/card',{playground:playground})%>
+        <% }%>
+    </div>

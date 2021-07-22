@@ -5,15 +5,15 @@
 <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-8 flex flex-col" action="/playgrounds" method="POST">
     <div class="mb-4">
         <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
-        <input type="text" id="title" name="playground[title]" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Title">
+        <input type="text" id="title" name="playground[title]" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Title" required>
     </div>
     <div class="mb-4">
         <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location</label>
-        <input type="text" id="location" name="playground[location]" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Location" >
+        <input type="text" id="location" name="playground[location]" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Location" required>
     </div>
     <div class="mb-4">
         <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-        <textarea class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4" name="playground[description]"></textarea>
+        <textarea class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:ring-indigo-500 focus:border-indigo-500" rows="4" name="playground[description]" required></textarea>
     </div>
     <div class="flex justify-between">   
         <button class="btn bg-gray-800 text-white ">Post a new playground</button>
