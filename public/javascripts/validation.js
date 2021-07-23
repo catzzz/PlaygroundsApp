@@ -55,7 +55,7 @@ const showSuccess = (input) => {
 };
 
 const checkUsername = () => {
-  console.log("check username");
+ 
   let valid = false;
   const min = 3,
     max = 25;
@@ -144,74 +144,84 @@ const debounce = (fn, delay = 500) => {
 };
 
 // instance input feedback
+if(loginForm){
+    loginForm.addEventListener(
+        "input",
+        debounce(function (e) {
+          switch (e.target.id) {
+            case "email":
+              checkEmail();
+              break;
+            case "password":
+              checkPassword();
+              break;
+          }
+        })
+      );
 
-loginForm.addEventListener(
-  "input",
-  debounce(function (e) {
-    switch (e.target.id) {
-      case "email":
-        checkEmail();
-        break;
-      case "password":
-        checkPassword();
-        break;
-    }
-  })
-);
+      loginForm.addEventListener("submit", function (e) {
+        // prevent the form from submitting
+        e.preventDefault();
+        // validate fields
+        let isEmailValid = checkEmail(),
+          isPasswordValid = checkPassword();
+      
+        let isFormValid = isEmailValid && isPasswordValid;
+      
+        // submit to the server if the form is valid
+        if (isFormValid) {
+            e.currentTarget.submit();
+        }
+      });
+      
+}
 
-signupForm.addEventListener(
-  "input",
-  debounce(function (e) {
-    switch (e.target.id) {
-      case "username":
-        checkUsername();
-        break;
-      case "email":
-        checkEmail();
-        break;
-      case "password":
-        checkPassword();
-        break;
-      case "confirm-password":
-        checkConfirmPassword();
-        break;
-    }
-  })
-);
+if(signupForm){
+    signupForm.addEventListener(
+        "input",
+        debounce(function (e) {
+          switch (e.target.id) {
+            case "username":
+              checkUsername();
+              break;
+            case "email":
+              checkEmail();
+              break;
+            case "password":
+              checkPassword();
+              break;
+            case "confirm-password":
+              checkConfirmPassword();
+              break;
+          }
+        })
+      );
+      
+      signupForm.addEventListener("submit", function (e) {
+        // prevent the form from submitting
+        e.preventDefault();
+        // validate fields
+        let isUsernameValid = checkUsername(),
+          isEmailValid = checkEmail(),
+          isPasswordValid = checkPassword(),
+          isConfirmPasswordValid = checkConfirmPassword();
+      
+        let isFormValid =
+          isUsernameValid &&
+          isEmailValid &&
+          isPasswordValid &&
+          isConfirmPasswordValid;
+      
+        // submit to the server if the form is valid
+        if (isFormValid) {
+            e.currentTarget.submit();
+        }
+      });
+}
 
-signupForm.addEventListener("submit", function (e) {
-  // prevent the form from submitting
-  e.preventDefault();
-  // validate fields
-  let isUsernameValid = checkUsername(),
-    isEmailValid = checkEmail(),
-    isPasswordValid = checkPassword(),
-    isConfirmPasswordValid = checkConfirmPassword();
 
-  let isFormValid =
-    isUsernameValid &&
-    isEmailValid &&
-    isPasswordValid &&
-    isConfirmPasswordValid;
 
-  // submit to the server if the form is valid
-  if (isFormValid) {
-  }
-});
 
-loginForm.addEventListener("submit", function (e) {
-  // prevent the form from submitting
-  e.preventDefault();
-  // validate fields
-  let isEmailValid = checkEmail(),
-    isPasswordValid = checkPassword();
-
-  let isFormValid = isEmailValid && isPasswordValid;
-
-  // submit to the server if the form is valid
-  if (isFormValid) {
-  }
-});
 
 /*---------------------- reference from ---------------------------------
 https://www.javascripttutorial.net/javascript-dom/javascript-form-validation/
