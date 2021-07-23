@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Review = require('./review')
 const Schema = mongoose.Schema;
 
 const PlaygroundSchema = new Schema({
@@ -7,10 +8,10 @@ const PlaygroundSchema = new Schema({
     image: String,
     description: String,
     location: String,
-    reviews:[
+    reviews: [
         {
-            type:Schema.Types.ObjectId,
-            ref:'Reviw'
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
         }
     ]
 });

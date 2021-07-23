@@ -83,14 +83,15 @@ app.post('/playgrounds', validatePlayground, catchAsync(async (req, res, next) =
 // Show single Playground
 
 app.get('/playgrounds/:id', catchAsync(async (req, res, next) => {
-    const playground = await Playground.findById(req.params.id)
-
+    const playground = await Playground.findById(req.params.id).populate('reviews');
+    console.log(playground);
     res.render('playgrounds/show', { playground });
 }));
 
 // Show edit single Playground
 app.get('/playgrounds/:id/edit', catchAsync(async (req, res) => {
     const playground = await Playground.findById(req.params.id)
+    
     res.render('playgrounds/edit', { playground });
 }))
 // Edit single Playground
@@ -118,6 +119,14 @@ app.post('/playgrounds/:id/reviews', validateReview,catchAsync(async(req, res)=>
     await review.save();
     await playground.save();
     res.redirect(`/playgrounds/${playground._id}`);
+}))
+
+// delete review
+app.delete('/playgrounds/:id/reviews/:reviewId',catchAsync(async(req, res)=>{
+    const{id , reviewId} = req.params;
+    Playground.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
+    await Review.findByIdAndDelete(req.params.reviewId);
+    res.redirect(`/playgrounds/${id}`);
 }))
 
 //
