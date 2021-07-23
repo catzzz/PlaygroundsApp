@@ -33,6 +33,7 @@ router.post('/', validateReview,catchAsync(async(req, res)=>{
     playground.reviews.push(review);
     await review.save();
     await playground.save();
+    req.flash('success', 'Created new review!');
     res.redirect(`/playgrounds/${playground._id}`);
 }))
 
@@ -41,6 +42,7 @@ router.delete('/:reviewId',catchAsync(async(req, res)=>{
     const{id , reviewId} = req.params;
     Playground.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
     await Review.findByIdAndDelete(req.params.reviewId);
+    req.flash('success', 'Successfully deleted review')
     res.redirect(`/playgrounds/${id}`);
 }))
 

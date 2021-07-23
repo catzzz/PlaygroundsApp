@@ -12,6 +12,10 @@
 <body class="relative bg-gray-100 h-screen flex flex-col justify-between">
     <%- include('../components/navbar')%>
     <main class="container">
+        <%- include('../components/flash',{success:success, error:error})%>
+
+       
+
         <%- body %>
     </main>
     <%- include('../components/footer')%>
