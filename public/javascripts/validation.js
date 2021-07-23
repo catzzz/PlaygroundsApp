@@ -149,8 +149,8 @@ if(loginForm){
         "input",
         debounce(function (e) {
           switch (e.target.id) {
-            case "email":
-              checkEmail();
+            case "username":
+              checkUsername();
               break;
             case "password":
               checkPassword();
@@ -163,10 +163,10 @@ if(loginForm){
         // prevent the form from submitting
         e.preventDefault();
         // validate fields
-        let isEmailValid = checkEmail(),
+        let isUsernameValid = checkUsername(),
           isPasswordValid = checkPassword();
       
-        let isFormValid = isEmailValid && isPasswordValid;
+        let isFormValid = isUsernameValid && isPasswordValid;
       
         // submit to the server if the form is valid
         if (isFormValid) {
