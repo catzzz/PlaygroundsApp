@@ -71,17 +71,17 @@ app.get('/', (req, res) => {
 });
 
 //  error meddileware 
-app.all('*',(req, res, next)=>{
-    next(new ExpressError('Page Not Found!!!', 404));
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
 })
 
+
 // error handler 
-app.use((err, req, res, next)=>{
-   
-    const{statusCode=500, message='Something went wrong'} = err;
-    console.log(`----------${err.message}`);
-    res.status(statusCode).render('error',{err});
-    
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.statusCode) err.statusCode = 500;
+    if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+    res.status(statusCode).render('error', { err })
 })
 
 app.listen(3000,()=>{
