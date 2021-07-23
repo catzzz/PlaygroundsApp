@@ -16,8 +16,11 @@ const flash = require('connect-flash');
 
 
 // routes
-const playgrounds = require('./routes/playgrounds');
-const reviews = require('./routes/reviews');
+const playgroundsRoutes = require('./routes/playgrounds');
+const reviewsRoutes = require('./routes/reviews');
+const usersRoutes = require('./routes/users')
+
+// end routes
 
 
 mongoose.connect('mongodb://localhost:27017/my-playgrounds', {
@@ -77,16 +80,10 @@ app.use((req, res, next) => {
 // flash end
 
 // routes
-app.use('/playgrounds', playgrounds);
-app.use('/playgrounds/:id/reviews', reviews);
+app.use('/playgrounds', playgroundsRoutes);
+app.use('/playgrounds/:id/reviews', reviewsRoutes);
+app.use('/', usersRoutes);
 
-
-// text user 
-app.get('/fakeUser', async(req, res)=>{
-    const user = new User({email:'chuneleu@gmail.com',username:'jimmy'});
-    const newUser = await User.register(user,'chicken');
-    res.send(newUser);
-})
 
 
 // Home

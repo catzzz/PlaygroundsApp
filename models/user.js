@@ -10,6 +10,7 @@ const UserSchema = new Schema ({
     }
 });
 // Include username and passwords ,and salts
+// authenticate is generated in passport localStorage
 UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', UserSchema);

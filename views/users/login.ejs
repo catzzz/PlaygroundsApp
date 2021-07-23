@@ -1,0 +1,31 @@
+<% layout('layouts/boilerplate')%>
+<div class="w-full rounded-xl max-w-xl mx-auto mt-8">
+    <form id="login"  class="container bg-white shadow-sm flex flex-col p-5 w-full">
+        <h1 class="text-gray-800 font-bold text-2xl text-center">Log In</h1>
+
+        <div class="">
+            <label for="email" class="font-bold my-3 block">Email:</label>
+            <input type="text" name="email" id="email" autocomplete="off" class="block border border-grey-light w-full p-3 rounded mb-4">
+            <small class="text-primary text-xs"></small>
+        </div>
+
+        <div class="">
+            <label for="password" class="font-bold my-3 block">Password:</label>
+            <input type="password" name="password" id="password" autocomplete="off" class="block border border-grey-light w-full p-3 rounded mb-4">
+            <small class="text-primary text-xs"></small>
+        </div>
+
+        
+        <div class="">
+            <input type="submit" value="Log In" class="mt-8 w-full text-center py-3 rounded bg-blue-500 text-white hover:bg-blue-700 focus:outline-none my-1">
+        </div>
+     
+    </form>
+
+    <div class="text-gray-700 mt-6 text-center">
+        Don&apos;s have an account? 
+        <a class="no-underline border-b border-blue-500 text-blue-500" href="/register">
+            Register
+        </a>.
+    </div>
+</div>
