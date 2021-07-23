@@ -4,6 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 const { playgroundSchema } = require('../schemas.js');
 const ExpressError = require('../utils/ExpressError');
 const Playground = require('../models/playground');
+const { isLoggedIn } = require('../middleware');
 
 const validatePlayground = (req, res, next) => {
     const { error } = playgroundSchema.validate(req.body);
@@ -16,6 +17,8 @@ const validatePlayground = (req, res, next) => {
 }
 
 
+
+
 // List all playgrounds
 router.get('/', catchAsync(async (req, res) => {
     const playgrounds = await Playground.find({});
@@ -24,12 +27,12 @@ router.get('/', catchAsync(async (req, res) => {
 
 // New 
 
-router.get('/new', (req, res) => {
+router.get('/new',isLoggedIn, (req, res) => {
     res.render('playgrounds/new');
 })
 
 // Add new Playground api
-router.post('/', validatePlayground, catchAsync(async (req, res, next) => {
+router.post('/',isLoggedIn, validatePlayground, catchAsync(async (req, res, next) => {
     
  
     if(!req.body.playground) throw new ExpressError('Invalid Playground Data',400);

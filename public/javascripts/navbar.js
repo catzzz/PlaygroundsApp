@@ -2,10 +2,18 @@ const profileBtn = document.getElementById("user-menu-button");
 const mobileMenuBtnOpen = document.getElementById('mobile-menu-btn-open');
 const mobileMenuBtnClose = document.getElementById('mobile-menu-btn-close');
 
+if(profileBtn ){
+   profileBtn.addEventListener("click", toggleProfileMenu);
+}
+if(mobileMenuBtnOpen){
+    mobileMenuBtnOpen.addEventListener("click", openMobileMenu);
+}
+if(mobileMenuBtnClose){
+    mobileMenuBtnClose.addEventListener("click", coloseMobileMenu);
+}
 
-profileBtn.addEventListener("click", toggleProfileMenu);
-mobileMenuBtnOpen.addEventListener("click", openMobileMenu);
-mobileMenuBtnClose.addEventListener("click", coloseMobileMenu);
+
+
 
 
 function openMobileMenu(){
