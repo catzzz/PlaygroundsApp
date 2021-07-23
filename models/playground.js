@@ -6,7 +6,13 @@ const PlaygroundSchema = new Schema({
     likes: String,
     image: String,
     description: String,
-    location: String
+    location: String,
+    reviews:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'Reviw'
+        }
+    ]
 });
 
 module.exports = mongoose.model('Playground', PlaygroundSchema);

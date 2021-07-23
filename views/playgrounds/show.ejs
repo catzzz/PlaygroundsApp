@@ -1,20 +1,20 @@
 <% layout('layouts/boilerplate')%>
 
-                    </li>
+    </li>
     <div class="mt-12 w-4/5 max-w-2xl mx-auto ">
         <div class="card">
             <div class="bg-rose-300">
 
-            
+
                 <%if(playground.image) {%>
-                <img class="object-cover w-full" alt="playground image" src="<%=playground.image%>">
-                <% }else {%>
-                <img class="object-cover w-full " alt="playground image"
-                    src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">
-                <% } %>
+                    <img class="object-cover w-full" alt="playground image" src="<%=playground.image%>">
+                    <% }else {%>
+                        <img class="object-cover w-full " alt="playground image"
+                            src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">
+                        <% } %>
             </div>
             <div class=" mb-8 px-3">
-                
+
                 <div class="">
                     <h5 class="text-gray-800 font-bold mt-8 text-xl">
                         <%= playground.title%>
@@ -30,14 +30,15 @@
                     <li class=" flex content-center ">
                         <%if(playground.image) {%>
                             <%=playground.likes %>
-                            <%}else{%>
-                             0
-                             <%}%>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary ml-3 inline-block" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
+                                <%}else{%>
+                                    0
+                                    <%}%>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 w-5 text-primary ml-3 inline-block" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                        </svg>
                     </li>
                 </ul>
 
@@ -53,5 +54,22 @@
                     2 days ago
                 </div>
             </div>
+
         </div>
+        <div class="card mt-3 px-3 py-5">
+            <h3 class="font-bold text-xl ">Leave a review</h3>
+    
+            <form action="/playgrounds/<%=playground.id%>/reviews" method="POST" class="mt-3">
+                <div class="mt-3">
+                    <label for="rating" class="">Rating</label>
+                    <input type="range" min="1" max="5" name="review[rating]" id="rating">
+                </div>
+                <label for="body">Review</label>
+                <textarea
+                    class="w-full px-3 py-2 text-gray-700  border shadow-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 mt-3"
+                    rows="2" name="review[body]" id="body" ></textarea>
+                <button class="btn bg-blue-600 text-white mt-3">Submit</button>
+            </form>
+        </div>
+
     </div>
