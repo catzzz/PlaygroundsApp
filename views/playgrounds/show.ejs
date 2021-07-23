@@ -23,11 +23,16 @@
                         <%= playground.description%>
                     </p>
                 </div>
-                <ul class="mt-3 ">
-                    <li class="">
+                <div class="mt-3 ">
+                    <p class="mt-3">
                         <%= playground.location%>
-                    </li>
-                    <li class=" flex content-center ">
+                    </p>
+                    <div class="mt-3">
+                        
+                        <p class="font-bold text-gray-700"><%= playground.author.username%></p>
+                    </div>
+                    
+                    <p class=" flex content-center mt-3">
                         <%if(playground.image) {%>
                             <%=playground.likes %>
                                 <%}else{%>
@@ -39,9 +44,10 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                         </svg>
-                    </li>
-                </ul>
+                                    </p>
+                </div>
 
+                <% if(playground.author.equals(currentUser._id)){%>
                 <div class="flex justify-between mt-3 ">
                     <a class="btn text-primary border-primary md:border-2 hover:bg-primary hover:text-gray-100 transition ease-out duration-500"
                         href="/playgrounds/<%=playground._id%>/edit">Edit</a>
@@ -50,6 +56,7 @@
                             class="btn text-white bg-primary md:border-2 hover:bg-white hover:text-primary border-primary transition ease-out duration-500">Delete</button>
                     </form>
                 </div>
+                <% } %>
                 <div class="text-gray-600 text-sm mt-3 ">
                     2 days ago
                 </div>

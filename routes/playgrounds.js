@@ -37,6 +37,7 @@ router.post('/',isLoggedIn, validatePlayground, catchAsync(async (req, res, next
  
     if(!req.body.playground) throw new ExpressError('Invalid Playground Data',400);
     const playground = new Playground(req.body.playground);
+    playground.author = req.user._id;
     await playground.save();
     req.flash('success', 'Successfully made a new playground!');
     res.redirect(`/playgrounds/${playground._id}`);
@@ -46,7 +47,8 @@ router.post('/',isLoggedIn, validatePlayground, catchAsync(async (req, res, next
 // Show single Playground
 
 router.get('/:id', catchAsync(async (req, res, next) => {
-    const playground = await Playground.findById(req.params.id).populate('reviews');
+    const playground = await Playground.findById(req.params.id).populate('reviews').populate('author');
+
     if (!playground) {
         req.flash('error', 'Cannot find that playground!');
         return res.redirect('/playgrounds');
