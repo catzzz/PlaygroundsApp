@@ -1,0 +1,11 @@
+<% layout('layouts/boilerplate')%>
+    <div class="flex justify-center items-center">
+        <div class="flex w-full justify-center text-2xl p-3">
+            <h2 class="font-bold mx-5"><%=err.statusCode%></h2>
+            <span class="border-l-2 border-gray-300 px-5 uppercase">
+                <%= err.message %>
+            </span>
+
+        </div>
+
+    </div>

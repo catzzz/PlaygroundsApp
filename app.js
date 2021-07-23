@@ -42,7 +42,7 @@ app.get('/playgrounds/new', (req, res) => {
 
 // Add new Playground api
 app.post('/playgrounds', catchAsync(async (req, res,next) => {
-
+    if(!req.body.playground) throw new ExpressError('Invalid Playground Data',400);
     const playground = new Playground(req.body.playground);
     await playground.save();
     res.redirect(`/playgrounds/${playground._id}`);
@@ -75,10 +75,16 @@ app.delete('/playgrounds/:id', catchAsync( async (req, res) => {
     await Playground.findByIdAndDelete(id);
     res.redirect('/playgrounds');
 }))
+//
+app.all('*',(req, res, next)=>{
+    next(new ExpressError('Page Not Found', 404));
+})
 
 // error handler 
 app.use((err, req, res, next)=>{
-    res.send('Oh something went wrong');
+    const{statusCode=500, message='Something went wrong'} = err;
+    res.status(statusCode).render('error',{err});
+    
 })
 
 app.listen(3000,()=>{
