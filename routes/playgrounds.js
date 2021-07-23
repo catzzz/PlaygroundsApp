@@ -19,7 +19,7 @@ const validatePlayground = (req, res, next) => {
 // List all playgrounds
 router.get('/', catchAsync(async (req, res) => {
     const playgrounds = await Playground.find({});
-    res.render('playground/index', { playgrounds })
+    res.render('playgrounds/index', { playgrounds })
 }));
 
 // New 

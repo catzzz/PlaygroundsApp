@@ -5,13 +5,14 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const Playground = require('./models/playground');
 const catchAsync = require('./utils/catchAsync');
+const session = require('express-session');
 const ExpressError = require('./utils/ExpressError');
 const ejsMate = require('ejs-mate');
 const Joi = require('joi');
 const{playgroundSchema,reviewSchema} = require('./schemas');
 const Review = require('./models/review');
 
-
+// routes
 const playgrounds = require('./routes/playgrounds');
 const reviews = require('./routes/reviews');
 
@@ -35,16 +36,27 @@ app.use(methodOverride('_method'));
 app.use('/playgrounds', playgrounds);
 app.use('/playgrounds/:id/reviews', reviews);
 
+// session config
+const sessionConfig = {
+    secret: 'thisshouldbeabettersecret!',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+app.use(session(sessionConfig))
+// end session config
 
 
+// Home
 app.get('/', (req, res) => {
     res.render('home')
 });
 
-
-
-
-//
+//  error meddileware 
 app.all('*',(req, res, next)=>{
     next(new ExpressError('Page Not Found!!!', 404));
 })
