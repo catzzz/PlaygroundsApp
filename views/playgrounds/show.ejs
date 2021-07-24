@@ -95,6 +95,7 @@
                     </h5>
                     <p class="mb-3">Review: <%= review.body %>
                     </p>
+                    <p>By: <%= review.author.username%></p>
                     <!-- You have to be logged in to be abled to edit and delete -->
                     <% if(currentUser && review.author.equals(currentUser._id)){%>
                     <div class="flex justify-between mt-3 ">
