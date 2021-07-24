@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const playgrounds = require('../controllers/playgrounds');
 const catchAsync = require('../utils/catchAsync');
 const { playgroundSchema } = require('../schemas.js');
 const ExpressError = require('../utils/ExpressError');
@@ -11,69 +12,23 @@ const { isLoggedIn,validatePlayground, isAuthor } = require('../middleware');
 
 
 // List all playgrounds
-router.get('/', catchAsync(async (req, res) => {
-    const playgrounds = await Playground.find({});
-    res.render('playgrounds/index', { playgrounds })
-}));
+router.get('/', catchAsync(playgrounds.index));
 
 // New 
 
-router.get('/new',isLoggedIn, (req, res) => {
-    res.render('playgrounds/new');
-})
+router.get('/new',isLoggedIn, playgrounds.renderNewPlaygroundPage );
 
 // Add new Playground api
-router.post('/',isLoggedIn, validatePlayground, catchAsync(async (req, res, next) => {
-    
- 
-    if(!req.body.playground) throw new ExpressError('Invalid Playground Data',400);
-    const playground = new Playground(req.body.playground);
-    playground.author = req.user._id;
-    await playground.save();
-    req.flash('success', 'Successfully made a new playground!');
-    res.redirect(`/playgrounds/${playground._id}`);
-
-}))
+router.post('/',isLoggedIn, validatePlayground, catchAsync(playgrounds.createPlayground))
 
 // Show single Playground
 
-router.get('/:id', catchAsync(async (req, res, next) => {
-    const playground = await Playground.findById(req.params.id).populate({
-        // populate again with author inside reviews
-        path:'reviews',
-        populate:{
-            path:'author'
-        }
-    }).populate('author');
-    
-    if (!playground) {
-        req.flash('error', 'Cannot find that playground!');
-        return res.redirect('/playgrounds');
-    }
-    res.render('playgrounds/show', { playground });
-}));
+router.get('/:id', catchAsync(playgrounds.showPlayground));
 
 // Show edit single Playground
-router.get('/:id/edit',isLoggedIn, isAuthor, catchAsync(async (req, res) => {
-    const playground = await Playground.findById(req.params.id)
-    if (!playground) {
-        req.flash('error', 'Cannot find that playground!');
-        return res.redirect('/playgrounds');
-    }
-    res.render('playgrounds/edit', { playground });
-}))
+router.get('/:id/edit',isLoggedIn, isAuthor, catchAsync(playgrounds.renderEditPlaygroundPage))
 // Edit single Playground
-router.put('/:id',isLoggedIn, isAuthor, validatePlayground,catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const playground = await Playground.findByIdAndUpdate(id, { ...req.body.playground });
-    req.flash('success', 'Successfully updated playground!');
-    res.redirect(`/playgrounds/${playground._id}`)
-}))
+router.put('/:id',isLoggedIn, isAuthor, validatePlayground, catchAsync(playgrounds.updatePlayground))
 
-router.delete('/:id', isLoggedIn, isAuthor,catchAsync( async (req, res) => {
-    const { id } = req.params;
-    await Playground.findByIdAndDelete(id);
-    req.flash('success', 'Successfully deleted playground!');
-    res.redirect('/playgrounds');
-}))
+router.delete('/:id', isLoggedIn, isAuthor,catchAsync( playgrounds.deletePlayground))
 module.exports = router;
