@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Review = require('./review');
-const User = require('./user')
+
 const Schema = mongoose.Schema;
 
 const PlaygroundSchema = new Schema({

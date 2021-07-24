@@ -48,7 +48,7 @@ router.post('/',isLoggedIn, validatePlayground, catchAsync(async (req, res, next
 
 router.get('/:id', catchAsync(async (req, res, next) => {
     const playground = await Playground.findById(req.params.id).populate('reviews').populate('author');
-
+    console.log(playground);
     if (!playground) {
         req.flash('error', 'Cannot find that playground!');
         return res.redirect('/playgrounds');
