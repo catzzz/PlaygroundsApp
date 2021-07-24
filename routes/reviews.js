@@ -4,21 +4,12 @@ const router = express.Router({ mergeParams: true });
 const Playground = require('../models/playground');
 const Review = require('../models/review');
 
-const { reviewSchema } = require('../schemas.js');
 
+const {isLoggedIn, validateReview,isAuthor}  = require('../middleware');
 
 const ExpressError = require('../utils/ExpressError');
 const catchAsync = require('../utils/catchAsync');
 
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
 
 
 
@@ -28,7 +19,7 @@ const validateReview = (req, res, next) => {
 router.post('/', validateReview,catchAsync(async(req, res)=>{
     const playground = await Playground.findById(req.params.id);
     const review = new Review(req.body.review);
-   
+    review.author = req.user._id;
 
     playground.reviews.push(review);
     await review.save();
@@ -38,7 +29,7 @@ router.post('/', validateReview,catchAsync(async(req, res)=>{
 }))
 
 // delete review
-router.delete('/:reviewId',catchAsync(async(req, res)=>{
+router.delete('/:reviewId',isLoggedIn,isAuthor,catchAsync(async(req, res)=>{
     const{id , reviewId} = req.params;
     Playground.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
     await Review.findByIdAndDelete(req.params.reviewId);

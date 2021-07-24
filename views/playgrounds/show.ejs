@@ -1,8 +1,12 @@
 <% layout('layouts/boilerplate')%>
 
     </li>
-    <div class="mt-12 max-w-7xl mx-auto grid grid-cols-5 gap-5">
-        <div class="card col-span-3">
+    <div class="mt-12 max-w-7xl mx-auto grid md:grid-cols-5 gap-5">
+        <!-- if use not logged in and no reviews . center the show page -->
+        <% if(!currentUser && !playground.reviews.length) {%>
+        <div class="md:col-span-1"></div>
+        <%}%>
+        <div class="card md:col-span-3">
             <div class="bg-rose-300">
 
 
@@ -63,10 +67,11 @@
             </div>
 
         </div>
-        <div class="col-span-2 ">
+        <div class="md:col-span-2 ">
 
-        
+        <% if(currentUser ) {%> 
         <div class="card px-3 py-5">
+           
             <h3 class="font-bold text-xl ">Leave a review</h3>
 
             <form action="/playgrounds/<%=playground.id%>/reviews" method="POST" class="mt-3">
@@ -82,6 +87,7 @@
             </form>
 
         </div>
+        <% } %>
         <% for(let review of playground.reviews) { %>
             <div class="card px-3 py-2 mt-2 text-sm">
                 <div class="">
@@ -89,6 +95,8 @@
                     </h5>
                     <p class="mb-3">Review: <%= review.body %>
                     </p>
+                    <!-- You have to be logged in to be abled to edit and delete -->
+                    <% if(currentUser && review.author.equals(currentUser._id)){%>
                     <div class="flex justify-between mt-3 ">
                         <a class="btn text-primary border-primary md:border-2 hover:bg-primary hover:text-gray-100 transition ease-out duration-500"
                             href="/playgrounds/<%=playground._id%>/edit">Edit</a>
@@ -97,6 +105,7 @@
                                 class="btn text-white bg-primary md:border-2 hover:bg-white hover:text-primary border-primary transition ease-out duration-500">Delete</button>
                         </form>
                     </div>
+                    <%} %>
                     <div class="text-gray-600 text-xs mt-2 ">
                         2 days ago
                     </div>
