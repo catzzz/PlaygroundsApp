@@ -4,17 +4,8 @@ const catchAsync = require('../utils/catchAsync');
 const { playgroundSchema } = require('../schemas.js');
 const ExpressError = require('../utils/ExpressError');
 const Playground = require('../models/playground');
-const { isLoggedIn } = require('../middleware');
+const { isLoggedIn,validatePlayground, isAuthor } = require('../middleware');
 
-const validatePlayground = (req, res, next) => {
-    const { error } = playgroundSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
 
 
 
@@ -57,7 +48,7 @@ router.get('/:id', catchAsync(async (req, res, next) => {
 }));
 
 // Show edit single Playground
-router.get('/:id/edit', catchAsync(async (req, res) => {
+router.get('/:id/edit',isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const playground = await Playground.findById(req.params.id)
     if (!playground) {
         req.flash('error', 'Cannot find that playground!');
@@ -66,14 +57,14 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
     res.render('playgrounds/edit', { playground });
 }))
 // Edit single Playground
-router.put('/:id', validatePlayground,catchAsync(async (req, res) => {
+router.put('/:id',isLoggedIn, isAuthor, validatePlayground,catchAsync(async (req, res) => {
     const { id } = req.params;
     const playground = await Playground.findByIdAndUpdate(id, { ...req.body.playground });
     req.flash('success', 'Successfully updated playground!');
     res.redirect(`/playgrounds/${playground._id}`)
 }))
 
-router.delete('/:id', catchAsync( async (req, res) => {
+router.delete('/:id', isLoggedIn, isAuthor,catchAsync( async (req, res) => {
     const { id } = req.params;
     await Playground.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted playground!');
