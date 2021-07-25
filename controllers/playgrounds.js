@@ -11,11 +11,14 @@ module.exports.renderNewPlaygroundPage = (req, res) => {
 
 module.exports.createPlayground= async (req, res, next) => {
     
- 
+    
     if(!req.body.playground) throw new ExpressError('Invalid Playground Data',400);
     const playground = new Playground(req.body.playground);
+    playground.images = req.files.map(f =>({url:f.path, filename:f.filename}));
+
     playground.author = req.user._id;
     await playground.save();
+    console.log(playground);
     req.flash('success', 'Successfully made a new playground!');
     res.redirect(`/playgrounds/${playground._id}`);
 
@@ -57,6 +60,6 @@ module.exports.updatePlayground = async (req, res) => {
 module.exports.deletePlayground = async (req, res) => {
     const { id } = req.params;
     await Playground.findByIdAndDelete(id);
-    req.flash('success', 'Successfully deleted playground!');
+    req.flash('success', 'Successfully deleted playground')
     res.redirect('/playgrounds');
 }

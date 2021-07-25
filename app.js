@@ -1,4 +1,10 @@
 
+if (process.env.NODE_ENV !== "production"){
+    require('dotenv').config();
+}
+
+
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -57,14 +63,15 @@ passport.deserializeUser(User.deserializeUser());
 
 //config passport end
 
-
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
+
 app.use(methodOverride('_method'));
+
 
 
 
@@ -74,7 +81,7 @@ app.use(flash());
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
-    console.log(req.user);
+
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
