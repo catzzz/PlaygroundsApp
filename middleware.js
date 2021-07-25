@@ -5,6 +5,7 @@ const Playground = require('./models/playground');
 const Review = require('./models/review');
 
 module.exports.validatePlayground = (req, res, next) => {
+
     const { error } = playgroundSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
