@@ -37,6 +37,7 @@ router.route("/:id")
   .put(
     isLoggedIn,
     isAuthor,
+    upload.array('image'),
     validatePlayground,
     catchAsync(playgrounds.updatePlayground)
   )
