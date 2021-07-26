@@ -1,0 +1,43 @@
+<div class="relative h-full w-full overflow-hidden ">
+
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+        class="h-5/6 w-6 bg-white  bg-opacity-75 absolute top-1/2 left-px z-10 transform -translate-y-2/4 cursor-pointer"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    <% images.map((img)=>{ %>
+
+        <img src="<%=img.url%>" alt="playground image " class=" absolute top-0 left-0 carouselImgs " />
+
+        <%}) %>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-5/6 w-6 bg-white  bg-opacity-75 absolute top-1/2 right-px z-10 transform -translate-y-2/4"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" onclick="nextSlide()">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+
+</div>
+
+<script>
+    var currentSlide = 1;
+    function nextSlide() {
+        showSlide(currentSlide += 1);
+    }
+
+    function previousSlide() {
+        showSlide(currentSlide -= 1);
+    }
+    function showSlide(slideIndex) {
+        
+        const slides = document.getElementsByClassName('carouselImgs');
+        console.log(slideIndex);
+        if (slideIndex > slides.length) { currentSlide = 1 }
+        if (slideIndex < 1) { currentSlide = slides.length }
+        for (var i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none'
+        }
+        slides[currentSlide - 1].style.display = 'flex'
+    }
+
+</script>

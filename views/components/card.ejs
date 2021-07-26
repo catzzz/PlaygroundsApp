@@ -1,7 +1,8 @@
 <a href="/playgrounds/<%=playground._id%>">
     <div class="card hover:shadow-lg cursor-pointer">
-             <%if(playground.image) {%>
-                <img src="<%=playground.image %>" alt="playground image" class="w-full h-32 sm:h-48 object-cover" />
+             <%if(playground.images.length) {%>
+
+                <img src="<%=playground.images[0].url %>" alt="playground image" class="w-full h-32 sm:h-48 object-cover" />
                 <% }else {%>
                 <img class="object-cover w-full h-32 sm:h-48" alt="playground image"
                     src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">

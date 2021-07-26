@@ -1,23 +1,23 @@
 <% layout('layouts/boilerplate')%>
 
     </li>
-    <div class="mt-12 max-w-7xl mx-auto grid md:grid-cols-5 gap-5">
+    <div class="mt-12 max-w-7xl mx-auto grid md:grid-cols-5 gap-5 h-full">
         <!-- if use not logged in and no reviews . center the show page -->
         <% if(!currentUser && !playground.reviews.length) {%>
         <div class="md:col-span-1"></div>
         <%}%>
-        <div class="card md:col-span-3">
-            <div class="bg-rose-300">
-
-
-                <%if(playground.image) {%>
-                    <img class="object-cover w-full" alt="playground image" src="<%=playground.image%>">
+        <div class="card md:col-span-3 h-full relative">
+            <div class="h-96 bg-red-400 mx-auto w-full">
+                <%if(playground.images.length) {%>
+                    <!-- Image carsousel -->
+                    <%- include('../components/carousel.ejs',{images:playground.images}) %>
+                   
                     <% }else {%>
                         <img class="object-cover w-full " alt="playground image"
                             src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">
-                        <% } %>
+                    <% } %>
             </div>
-            <div class=" mb-8 px-3">
+            <div class=" mb-8 px-3 h-full">
 
                 <div class="">
                     <h5 class="text-gray-800 font-bold mt-8 text-xl">
@@ -68,51 +68,8 @@
 
         </div>
         <div class="md:col-span-2 ">
-
-        <% if(currentUser ) {%> 
-        <div class="card px-3 py-5">
-           
-            <h3 class="font-bold text-xl ">Leave a review</h3>
-
-            <form action="/playgrounds/<%=playground.id%>/reviews" method="POST" class="mt-3">
-                <div class="mt-3">
-                    <label for="rating" class="">Rating</label>
-                    <input type="range" min="1" max="5" name="review[rating]" id="rating">
-                </div>
-                <label for="body">Review</label>
-                <textarea
-                    class="w-full px-3 py-2 text-gray-700  border shadow-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 mt-3"
-                    rows="2" name="review[body]" id="body"></textarea>
-                <button class="btn bg-blue-600 text-white mt-3">Submit</button>
-            </form>
-
-        </div>
-        <% } %>
-        <% for(let review of playground.reviews) { %>
-            <div class="card px-3 py-2 mt-2 text-sm">
-                <div class="">
-                    <h5 class="mt-3">Rating: <%= review.rating %>
-                    </h5>
-                    <p class="mb-3">Review: <%= review.body %>
-                    </p>
-                    <p>By: <%= review.author.username%></p>
-                    <!-- You have to be logged in to be abled to edit and delete -->
-                    <% if(currentUser && review.author.equals(currentUser._id)){%>
-                    <div class="flex justify-between mt-3 ">
-                        <a class="btn text-primary border-primary md:border-2 hover:bg-primary hover:text-gray-100 transition ease-out duration-500"
-                            href="/playgrounds/<%=playground._id%>/edit">Edit</a>
-                        <form class="d-inline" action="/playgrounds/<%=playground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                            <button
-                                class="btn text-white bg-primary md:border-2 hover:bg-white hover:text-primary border-primary transition ease-out duration-500">Delete</button>
-                        </form>
-                    </div>
-                    <%} %>
-                    <div class="text-gray-600 text-xs mt-2 ">
-                        2 days ago
-                    </div>
-                </div>
-            </div>
-            <% } %>
+        <%- include('../components/reviews.ejs',{playground: playground,currentUser:currentUser}) %>
+        
         </div>
 
     </div>
