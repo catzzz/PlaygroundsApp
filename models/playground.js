@@ -12,6 +12,9 @@ ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200');
 });
 
+// in order to get virtual properties in result , we have to set up opts;
+const opts = { toJSON: { virtuals: true } };
+
 const PlaygroundSchema = new Schema({
     title: String,
     likes: String,
@@ -41,6 +44,12 @@ const PlaygroundSchema = new Schema({
             ref: 'Review'
         }
     ]
+},opts);
+// this is the virtual properties for cluster map
+PlaygroundSchema.virtual('properties.popUpMarkup').get(function () {
+    return `
+    <strong ><a href="/playgrounds/${this._id}">${this.title}</a><strong>
+    <p>${this.description.substring(0, 20)}...</p>`
 });
 
 
