@@ -17,7 +17,7 @@
 <!-- include javascript for cluster map -->
 <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-       
+        const playgrounds = {features: <%- JSON.stringify(playgrounds) %>};
 </script>
     
 <script src="/javascripts/clusterMap.js"></script>
