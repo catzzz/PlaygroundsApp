@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
 
-    </li>
+
     <div class="mt-12 max-w-7xl mx-auto grid md:grid-cols-5 gap-5 h-full">
         <!-- if use not logged in and no reviews . center the show page -->
         <% if(!currentUser && !playground.reviews.length) {%>
@@ -50,7 +50,7 @@
                                         </svg>
                                     </p>
                 </div>
-
+                <div id='map' style='width: full; height: 300px;'></div>
                 <% if(currentUser && playground.author.equals(currentUser._id)){%>
                 <div class="flex justify-between mt-3 ">
                     <a class="btn text-primary border-primary md:border-2 hover:bg-primary hover:text-gray-100 transition ease-out duration-500"
@@ -65,7 +65,7 @@
                     2 days ago
                 </div>
             </div>
-
+           
         </div>
         <div class="md:col-span-2 ">
         <%- include('../components/reviews.ejs',{playground: playground,currentUser:currentUser}) %>
@@ -73,3 +73,11 @@
         </div>
 
     </div>
+
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const playground = <%- JSON.stringify(playground) %>;
+    </script>
+    
+
+    <script src="/javascripts/showPageMap.js"></script>
