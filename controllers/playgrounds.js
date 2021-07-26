@@ -1,5 +1,9 @@
 const Playground = require('../models/playground');
 const { cloudinary } = require("../cloudinary");
+//  Mapbox 
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 
 module.exports.index = async (req, res) => {
@@ -12,9 +16,15 @@ module.exports.renderNewPlaygroundPage = (req, res) => {
 }
 
 module.exports.createPlayground= async (req, res, next) => {
-    
-    
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.playground.location,
+        limit:1
+    }).send()
+
     if(!req.body.playground) throw new ExpressError('Invalid Playground Data',400);
+    if(geoData.body.features[0]){
+        playground.geometry = geoData.body.features[0].geometyr;
+    }
     const playground = new Playground(req.body.playground);
     playground.images = req.files.map(f =>({url:f.path, filename:f.filename}));
 
