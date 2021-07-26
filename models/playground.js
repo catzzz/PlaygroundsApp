@@ -15,7 +15,9 @@ ImageSchema.virtual('thumbnail').get(function () {
 const PlaygroundSchema = new Schema({
     title: String,
     likes: String,
-    // GeoJson
+    images: [
+        ImageSchema
+    ],
     geometry: {
         type: {
             type: String,
@@ -27,7 +29,6 @@ const PlaygroundSchema = new Schema({
             required: true
         }
     },
-
     description: String,
     location: String,
     author:{
