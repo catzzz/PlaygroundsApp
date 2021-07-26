@@ -1,4 +1,6 @@
 const Playground = require('../models/playground');
+const { cloudinary } = require("../cloudinary");
+
 
 module.exports.index = async (req, res) => {
     const playgrounds = await Playground.find({});
@@ -56,6 +58,13 @@ module.exports.updatePlayground = async (req, res) => {
     const imgs = req.files.map(f =>({url:f.path, filename:f.filename}))
     playground.images.push(...imgs);
     await playground.save();
+    // delete images
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await playground.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+    }
     req.flash('success', 'Successfully updated playground!');
     res.redirect(`/playgrounds/${playground._id}`)
 }
