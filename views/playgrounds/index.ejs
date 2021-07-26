@@ -1,9 +1,23 @@
 <% layout('layouts/boilerplate')%>
-
+    
+ 
+    <div class="w-full h-80 bg-gray-400 mt-8 rounded-md relative overflow-hidden">
+        <style>
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        </style>
+        <div id="map" class=""></div>
+    </div>
     <div class="grid grid-cols-3 mt-8 gap-10">
 
 
         <% for (let playground of playgrounds){%>
             <%- include('../components/card',{playground:playground})%>
-        <% }%>
+                <% }%>
     </div>
+<!-- include javascript for cluster map -->
+<script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+       
+</script>
+    
+<script src="/javascripts/clusterMap.js"></script>

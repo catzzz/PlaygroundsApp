@@ -16,21 +16,23 @@ module.exports.renderNewPlaygroundPage = (req, res) => {
 }
 
 module.exports.createPlayground= async (req, res, next) => {
+
+
+    if(!req.body.playground) throw new ExpressError('Invalid Playground Data',400);
+
+    const playground = new Playground(req.body.playground);
     const geoData = await geocoder.forwardGeocode({
         query: req.body.playground.location,
         limit:1
     }).send()
-
-    if(!req.body.playground) throw new ExpressError('Invalid Playground Data',400);
+    playground.images = req.files.map(f =>({url:f.path, filename:f.filename}));
     if(geoData.body.features[0]){
         playground.geometry = geoData.body.features[0].geometyr;
     }
-    const playground = new Playground(req.body.playground);
-    playground.images = req.files.map(f =>({url:f.path, filename:f.filename}));
 
     playground.author = req.user._id;
     await playground.save();
-    console.log(playground);
+    
     req.flash('success', 'Successfully made a new playground!');
     res.redirect(`/playgrounds/${playground._id}`);
 
@@ -44,7 +46,7 @@ module.exports.showPlayground = async (req, res, next) => {
             path:'author'
         }
     }).populate('author');
-    
+    console.log(playground);
     if (!playground) {
         req.flash('error', 'Cannot find that playground!');
         return res.redirect('/playgrounds');
