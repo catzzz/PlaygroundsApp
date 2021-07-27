@@ -1,12 +1,15 @@
 <% if((success && success.length)|| (error && error.length)){ %>
-    <% if(success && success.length){ %>
+   
       
-    <div class="text-white px-3 py-2 border-0 rounded absolute  bg-blue-500 bg-opacity-90 top-px right-px w-60 h-10 z-10 text-xs flex items-center" id="flash-message">
+    <div class="text-white px-3 py-2 border-0 rounded absolute  
+    <% if(success && success.length){ %>
+      bg-blue-500
+    <%}else{ %>
+      bg-primary
     <%} %>
-    <% if(error && error.length){ %>
-    <div class="text-white px-3 py-2 border-0 rounded absolute  bg-primary bg-opacity-90 top-px right-px w-60 h-10 z-10 text-xs" id="flash-message>
-    
-    <%} %>
+      bg-opacity-90 top-px right-px w-80 h-10 z-10 text-xs flex items-center" id="flash-message">
+  
+
 
         <span class="text-xl inline-block mr-5 align-middle">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -15,7 +18,7 @@
         </span>
         <span class="inline-block align-middle ">
           <% if(success && success.length){ %>
-          <b class="capitalize">success!</b> <%= success %>
+          <b class="capitalize"></b>success!</b> <%= success %>
           <%} %>
           <% if(error && error.length){ %>
           <b class="capitalize">error!</b> <%= error %>

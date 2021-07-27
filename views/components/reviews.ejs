@@ -40,7 +40,7 @@
                 </p>
                 <p class="mb-2">Review: <%= review.body %>
                 </p>
-                <p>By: <%= review.author.username%></p>
+                <p><%= review.author.username%></p>
                 <!-- You have to be logged in to be abled to edit and delete -->
                 <% if(currentUser && review.author.equals(currentUser._id)){%>
                 <div class="flex justify-between mt-3 ">
