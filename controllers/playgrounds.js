@@ -72,6 +72,7 @@ module.exports.updatePlayground = async (req, res) => {
     await playground.save();
     // delete images
     if (req.body.deleteImages) {
+        // delete image from cloudinary
         for (let filename of req.body.deleteImages) {
             await cloudinary.uploader.destroy(filename);
         }

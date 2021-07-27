@@ -36,3 +36,9 @@ module.exports.logout = (req, res) => {
     req.flash('success', "Logged Out, And Goodbye!");
     res.redirect('/playgrounds');
 }
+
+// Profile
+
+module.exports.renderProfile = (req,res) =>{
+    res.render('users/profile');
+}
