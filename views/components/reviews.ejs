@@ -1,13 +1,27 @@
 <% if(currentUser ) {%> 
-       
+    
     <div class="card px-3 py-5">
        
         <h3 class="font-bold text-xl ">Leave a review</h3>
 
         <form action="/playgrounds/<%=playground.id%>/reviews" method="POST" class="mt-3">
             <div class="mt-3">
-                <label for="rating" class="">Rating</label>
-                <input type="range" min="1" max="5" name="review[rating]" id="rating">
+                <!-- <label for="rating" class="">Rating</label>
+                <input type="range" min="1" max="5" name="review[rating]" id="rating"> -->
+                <fieldset class="starability-basic">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                        aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
             </div>
             <label for="body">Review</label>
             <textarea
@@ -21,9 +35,10 @@
     <% for(let review of playground.reviews) { %>
         <div class="card px-3 py-2 mt-2 text-sm">
             <div class="">
-                <h5 class="mt-3">Rating: <%= review.rating %>
-                </h5>
-                <p class="mb-3">Review: <%= review.body %>
+                <p class="starability-result mb-2" data-rating="<%=review.rating%>">
+                    Rated: <%= review.rating %> stars
+                </p>
+                <p class="mb-2">Review: <%= review.body %>
                 </p>
                 <p>By: <%= review.author.username%></p>
                 <!-- You have to be logged in to be abled to edit and delete -->
