@@ -7,7 +7,7 @@
         <div class="md:col-span-1"></div>
         <%}%>
         <div class="card md:col-span-3 h-full relative">
-            <div class="h-96 bg-red-400 mx-auto w-full">
+            <div class="h-96 mx-auto w-full">
                 <%if(playground.images.length) {%>
                     <!-- Image carsousel -->
                     <%- include('../components/carousel.ejs',{images:playground.images}) %>
@@ -20,7 +20,7 @@
             <div class=" mb-8 px-3 h-full">
 
                 <div class="">
-                    <h5 class="text-gray-800 font-bold mt-8 text-xl">
+                    <h5 class="text-gray-800 font-bold mt-2 text-xl">
                         <%= playground.title%>
                     </h5>
                     <p class="text-sm mt-3">
