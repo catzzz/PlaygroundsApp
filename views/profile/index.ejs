@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate')%>
+    <link href="/stylesheets/dropZone.css" rel="stylesheet" type="text/css">
+    <div class="w-full rounded-xl max-w-xl mx-auto mt-8">
+        <form id="edit-profile" class="container bg-white shadow-sm flex flex-col p-5 w-full" action="/profile?_method=PUT" method="POST"
+            enctype="multipart/form-data">
+
+            <div class="drop-zone w-40 h-40 self-center bg-gray-200 relative rounded-full overflow-hidden border-2 border-gray-800">
+                    <%if(currentUser.images) { %>
+                    <div class="drop-zone__thumb z-10" style="width:full; background-image: url(<%=currentUser.images.url%>);">
+                
+                    </div>
+                    <%}%>
+                
+                <span
+                class="text-gray-800 drop-zpne__prompt text-center text-xs absolute top-1/2 left-2/4 transform -translate-y-2/4 -translate-x-1/2 ">Drop
+                file here or click to upload </span>
+                <input type="file" name="profile-image" class="drop-zone__input">
+              </div>
+            <div class="">
+                <label for="username" class="font-bold my-3 block">Username:</label>
+                <input type="text" name="username" id="username" autocomplete="off"
+                    class="block border border-grey-light w-full p-3 rounded mb-4" value="<%=currentUser.username%>">
+                <small class="text-primary text-xs"></small>
+            </div>
+
+            <div class="">
+                <label for="email" class="font-bold my-3 block">Email:</label>
+                <input type="text" name="email" id="email" autocomplete="off"
+                    class="block border border-grey-light w-full p-3 rounded mb-4" value="<%=currentUser.email%>">
+                <small class="text-primary text-xs"></small>
+            </div>
+
+            <div class="">
+                <input type="submit" value="Update Profile"
+                    class="mt-8 w-full text-center py-3 rounded bg-blue-500 text-white hover:bg-blue-700 focus:outline-none my-1">
+            </div>
+
+        </form>
+
+
+    </div>
