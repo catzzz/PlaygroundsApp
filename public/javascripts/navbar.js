@@ -5,16 +5,13 @@ const mobileMenuBtnClose = document.getElementById('mobile-menu-btn-close');
 const navbar = document.getElementById('navbar');
 if(navbar){
     const route = window.location.pathname;
-    console.log(route);
+  
     if(route === '/'){
       
         navbar.style.backgroundColor ="transparent";
         navbar.style.borderBottom ="1px solid white";
         
-    }else{
-
     }
-
 }
 
 
