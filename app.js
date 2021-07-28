@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== "production"){
 }
 
 const { cloudinary } = require("./cloudinary");
-
+const Playground = require('./models/playground');
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -20,7 +20,7 @@ const flash = require('connect-flash');
 
 const { isLoggedIn } = require("./middleware");
 
-
+const catchAsync = require("./utils/catchAsync");
 // routes
 const playgroundsRoutes = require('./routes/playgrounds');
 const reviewsRoutes = require('./routes/reviews');
@@ -99,9 +99,10 @@ app.use('/', usersRoutes);
 
 
 // Home
-app.get('/', (req, res) => {
-    res.render('home')
-});
+app.get('/', catchAsync(async (req, res) => {
+    const playgrounds = await Playground.find({}).limit(200);
+    res.render('home',{playgrounds})
+}));
 
 //  error meddileware 
 app.all('*', (req, res, next) => {
