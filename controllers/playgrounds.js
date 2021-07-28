@@ -7,9 +7,33 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 
 module.exports.index = async (req, res) => {
-    const playgrounds = await Playground.find({});
-    res.render('playgrounds/index', { playgrounds })
+    let page = 1;
+    // if no guery. it's the first time to load page
+    if(req.query.page){
+        page = req.query.page
+    }
+    
+    // Get total length for pagenation
+    const totalLength = await (await Playground.find({})).length;
+    
+    const limit = 6;
+    // Skip pages
+    let skipPage = (page - 1) * limit;
+    console.log(page);
+    // query back to head if over length
+    if (page > Math.ceil(totalLength/limit)) {
+        skipPage = 0 ;
+        page = 1;
+    }
+    console.log(`page ${page} skipPage ${skipPage} ${Math.ceil(totalLength/limit)}`)
+    const playgrounds = await Playground.find({}).skip(skipPage).limit(limit);
+    console.log(`current page ${page}`)
+    res.render('playgrounds/index', { playgrounds, page ,totalLength, limit })
 }
+
+
+
+
 
 module.exports.renderNewPlaygroundPage = (req, res) => {
     res.render('playgrounds/new');

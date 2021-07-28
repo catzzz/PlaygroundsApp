@@ -1,0 +1,91 @@
+
+<div class="mt-8">
+    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+         <!-- prev page -->
+      <% if(page > 1 ){ %>
+        <a
+       
+        onclick="prevPage(<%= page %>)"
+        class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+      >
+        <span class="sr-only">Previous</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+      </a>
+      <%} %>
+      <!-- always show 1 -->
+      <%if(page >1) {%>
+        <a
+        href="/playgrounds?page=1"
+        class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+      >
+        1
+      </a>
+      <% } %>
+      <%if(page >2) {%>
+      <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+        ...
+      </span>
+      <% } %>
+     
+
+      <!-- current page -->
+      <a
+        href="#"
+        aria-current="page"
+        class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+      >
+        <%=page %>
+      </a>
+      
+      
+
+      <% if(page*limit + limit < totalLength){%>
+        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+            ...
+          </span>
+    <%} %>
+    <% if(page*limit  < totalLength){%>
+          <!-- show last page -->
+          <a
+          href="/playgrounds?page=<%=Math.ceil(totalLength/limit) %>"
+          aria-current="page"
+          class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+        >
+          <%=Math.ceil(totalLength/limit) %>
+        </a>
+      <%} %>
+    
+      <!-- next page -->
+      <% if(page < Math.ceil(totalLength/limit) ){ %>
+      <a
+        
+        class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer"
+        onclick="nextPage(<%= page %>)"
+        >
+        <span class="sr-only">Next</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+      </a>
+      <% } %>
+    </nav>
+  </div>
+
+
+
+
+<script>
+    function prevPage(currentPage){
+        const prev = currentPage - 1;
+        window.location = `/playgrounds?page=${prev}`; 
+    }
+    
+    function nextPage(currentPage){
+
+        const next = currentPage + 1;
+        window.location = `/playgrounds?page=${next}`; 
+
+    }
+</script>
