@@ -3,8 +3,7 @@ if (process.env.NODE_ENV !== "production"){
     require('dotenv').config();
 }
 
-const { cloudinary } = require("./cloudinary");
-const Playground = require('./models/playground');
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -18,10 +17,12 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user')
 const flash = require('connect-flash');
 
-const { isLoggedIn } = require("./middleware");
 
+
+// Security
 const mongoSanitize = require('express-mongo-sanitize');
-
+const helmet = require("helmet");
+// end security
 const catchAsync = require("./utils/catchAsync");
 // routes
 const playgroundsRoutes = require('./routes/playgrounds');
@@ -79,8 +80,56 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride('_method'));
 
-// sanitzie
+// security
 app.use(mongoSanitize())
+app.use(helmet());
+// end security
+// conetent security policy
+const scriptSrcUrls = [
+
+    "https://api.tiles.mapbox.com/",
+    "https://api.mapbox.com/",
+
+    "https://cdnjs.cloudflare.com/"
+    
+];
+const styleSrcUrls = [
+
+    "https://api.mapbox.com/",
+    "https://api.tiles.mapbox.com/",
+    "https://fonts.googleapis.com/"
+   
+];
+
+const connectSrcUrls = [
+
+    "https://api.mapbox.com/",
+    "https://a.tiles.mapbox.com/",
+    "https://b.tiles.mapbox.com/",
+    "https://events.mapbox.com/",
+    
+];
+const fontSrcUrls = [];
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/`, //SHOULD MATCH CLOUDINARY ACCOUNT! 
+                "https://images.unsplash.com/",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+        },
+    })
+);
 
 
 // flash start
