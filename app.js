@@ -40,11 +40,15 @@ const app = express();
 
 // session config
 const sessionConfig = {
+    name:'session',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: true,
     cookie: {
+        // cookis is only accessible in http;
         httpOnly: true,
+        // only access by https;
+        // secure :true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
