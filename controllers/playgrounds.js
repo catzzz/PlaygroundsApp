@@ -25,9 +25,9 @@ module.exports.index = async (req, res) => {
         skipPage = 0 ;
         page = 1;
     }
-    console.log(`page ${page} skipPage ${skipPage} ${Math.ceil(totalLength/limit)}`)
+
     const playgrounds = await Playground.find({}).skip(skipPage).limit(limit);
-    console.log(`current page ${page}`)
+    
     res.render('playgrounds/index', { playgrounds, page ,totalLength, limit })
 }
 

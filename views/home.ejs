@@ -1,10 +1,68 @@
-<% layout('layouts/boilerplate')%>
-<main class="px-3 bg-red-400">
-    <h1>YelpCamp</h1>
-    <p class="lead"> Welcome to YelpCamp! <br> Jump right in and explore our many campgrounds. <br>
-        Feel free to share some of your own and comment on others!</p>
-    <a href="/campgrounds" class="btn btn-lg btn-secondary font-weight-bold border-white bg-white">View
-        Campgrounds</a>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEE"S PLAYGROUND</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+
+    <!-- mapbox -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link href="/stylesheets/stars.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/uploadImage.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="relative bg-gray-100 h-screen flex flex-col justify-between">
+    <%- include('./components/navbar'),{currentUser:currentUser}%>
+    <div class=" w-full h-40 z-20 relative">
+        <style>
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        </style>
+        <div id="map" class=""></div>
+    </div>
+        <main class="flex justify-center my-auto">
+            <%- include('./components/flash',{success:success, error:error})%>
+                <div class="absolute top-0 bottom-0 w-full h-screen z-0 bg-cover bg-no-repeat"
+                    style="background-image:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)), url(https://images.unsplash.com/photo-1478915765319-04e68e890018?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1336&q=80);">
+                </div>
+
+                <div class="container relative z-10 flex items-center justify-center  text-center rounded-md">
+
+                    <div class=" h-full   p-6 backdrop-filter backdrop-blur-md">
+                        <h1 class="font-bold text-white text-3xl mb-3 ">Bee&apos;s Playgrounds</h1>
+                        <p class="text-sm text-white mb-3"> Welcome to my Playgrounds! <br> Expore our favorite
+                            playgrounds for
+                            families. <br>
+                            Feel free to share some of your own and comment on others!</p>
+                        <a href="/playgrounds"
+                            class="btn  text-white border-2 hover:border-gray-700 hover:bg-gray-700">View
+                            Playgrounds</a>
+                    </div>
+
+                </div>
+         
+
+        </main>
+
+
+
+</body>
+
+<script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const playgrounds = {features: <%- JSON.stringify(playgrounds) %>};
+</script>
+
+
+<script src="/javascripts/clusterMap.js"></script> -->
+<script src='/javascripts/navbar.js'></script>
+<script src='/javascripts/validation.js'></script>
+<script src='/javascripts/dropZone.js'></script>
+<script src='/javascripts/uploadImage.js'></script>
+
+</html>
+
 
 
