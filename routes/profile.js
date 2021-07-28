@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const profile = require('../controllers/profile')
-const { isLoggedIn, isAuthor } = require("../middleware");
+const { isLoggedIn } = require("../middleware");
+const catchAsync = require("../utils/catchAsync");
+const multer  = require('multer')
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
 
-// router.put('/profile',isLoggedIn,(req,res)=>{
-//         res.send('update profile');
-// })
+
+
 router.route('/')
-    .get(isLoggedIn,profile.index);
+    .get(isLoggedIn,profile.index)
+    .put(isLoggedIn,upload.single('profile-image'), catchAsync(profile.updateProfile));
 
 module.exports = router;
