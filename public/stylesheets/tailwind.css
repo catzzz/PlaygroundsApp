@@ -22,3 +22,4 @@
 .btn {
     @apply rounded-full py-2 px-3 uppercase text-xs font-bold cursor-pointer tracking-wider;
 }
+
