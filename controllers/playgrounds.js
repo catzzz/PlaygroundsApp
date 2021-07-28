@@ -26,9 +26,7 @@ module.exports.createPlayground= async (req, res, next) => {
     playground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     playground.author = req.user._id;
     await playground.save();
-    console.log('-------------------')
-    console.log(playground);
-    console.log('-------------------')
+
     req.flash('success', 'Successfully made a new playground!');
     res.redirect(`/playgrounds/${playground._id}`)
 
