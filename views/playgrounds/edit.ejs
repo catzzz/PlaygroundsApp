@@ -16,7 +16,7 @@
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="Location" value="<%=playground.location%>" required aria-required="true">
             </div>
-     
+
             <div class="mb-4">
                 <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
                 <textarea class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"
@@ -24,14 +24,21 @@
             </div>
             <!-- upload Image -->
             <input type="file" name="image" id="" multiple>
-            <div class="mb-3">
-                <% playground.images.forEach(function(img, i) {  %>
-                <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
-                <div class="form-check-inline">
-                    <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
-                </div>
-                <label for="image-<%=i%>">Delete?</label>
-                <% })%>
+            <div class="mb-3 flex flex-wrap justify-between  ">
+
+                <% playground.images.forEach(function(img, i) { %>
+                    <div class="flex flex-col rounded shadow-md overflow-hidden mt-4">
+
+                        <div class="h-30  bg-red-500">
+                            <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="playground-image" class="object-cover" >
+                        </div>
+                        <div class="flex items-center">             
+                                <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>" class="">
+                                <label class="" for="image-<%=i%>" >Delete</label>
+                        </div>
+        
+                    </div>
+                    <% })%>
             </div>
             <div class="flex justify-between">
                 <button class="btn bg-gray-800 text-white ">Update Playground</button>
@@ -42,3 +49,4 @@
         </form>
         <a href="/playgrounds">All playgrounds</a>
     </div>
+

@@ -17,7 +17,6 @@ function addFile(target, file) {
 
   clone.querySelector("h1").textContent = file.name;
   clone.querySelector("li").id = objectURL;
-
   clone.querySelector(".size").textContent =
     file.size > 1024
       ? file.size > 1048576

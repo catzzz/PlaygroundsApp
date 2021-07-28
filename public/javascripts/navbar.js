@@ -1,4 +1,4 @@
-const profileBtn = document.getElementById("user-menu-button");
+const profileBtn = document.getElementById("#user-menu-button");
 const mobileMenuBtnOpen = document.getElementById('mobile-menu-btn-open');
 const mobileMenuBtnClose = document.getElementById('mobile-menu-btn-close');
 

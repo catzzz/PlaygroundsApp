@@ -20,15 +20,15 @@ module.exports.createPlayground= async (req, res, next) => {
         query: req.body.playground.location,
         limit: 1
     }).send()
-    console.log('---------**************');
-    console.log(req.body, req.files);
-    console.log('---------**************');
+
     const playground = new Playground(req.body.playground);
     playground.geometry = geoData.body.features[0].geometry;
     playground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     playground.author = req.user._id;
     await playground.save();
+    console.log('-------------------')
     console.log(playground);
+    console.log('-------------------')
     req.flash('success', 'Successfully made a new playground!');
     res.redirect(`/playgrounds/${playground._id}`)
 
