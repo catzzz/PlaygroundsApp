@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate')%>
 
 
-    <div class="mt-12 max-w-7xl mx-auto grid md:grid-cols-5 gap-5 h-full">
+    <div class=" my-auto max-w-7xl mx-auto grid md:grid-cols-5 gap-5 h-full py-8">
         <!-- if use not logged in and no reviews . center the show page -->
         <% if(!currentUser && !playground.reviews.length) {%>
         <div class="md:col-span-1"></div>
