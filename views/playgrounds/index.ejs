@@ -8,12 +8,13 @@
         <div id="map" class=""></div>
     </div>
     <div class="grid grid-cols-3 mt-8 gap-10">
-
-
+        
+    
         <% for (let playground of playgrounds){%>
             <%- include('../components/card',{playground:playground})%>
                 <% }%>
     </div>
+    <%- include('../components/pagination.ejs',{length:totalLength, page:page, limit:limit}) %>
 <!-- include javascript for cluster map -->
 <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
@@ -21,3 +22,7 @@
 </script>
     
 <script src="/javascripts/clusterMap.js"></script>
+<script>
+
+</script>   
+

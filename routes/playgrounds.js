@@ -25,6 +25,9 @@ router.route('/')
     catchAsync(playgrounds.createPlayground)
   );
 
+router.get("/page", (req, res) =>{
+  res.send("get page");
+})
 
 
 // New
