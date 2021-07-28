@@ -20,6 +20,8 @@ const flash = require('connect-flash');
 
 const { isLoggedIn } = require("./middleware");
 
+const mongoSanitize = require('express-mongo-sanitize');
+
 const catchAsync = require("./utils/catchAsync");
 // routes
 const playgroundsRoutes = require('./routes/playgrounds');
@@ -61,6 +63,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+
 //config passport end
 
 app.engine('ejs', ejsMate)
@@ -72,7 +75,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride('_method'));
 
-
+// sanitzie
+app.use(mongoSanitize())
 
 
 // flash start
@@ -100,8 +104,8 @@ app.use('/', usersRoutes);
 
 // Home
 app.get('/', catchAsync(async (req, res) => {
-    const playgrounds = await Playground.find({}).limit(200);
-    res.render('home',{playgrounds})
+    
+    res.render('home')
 }));
 
 //  error meddileware 

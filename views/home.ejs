@@ -16,16 +16,11 @@
 
 <body class="relative bg-gray-100 h-screen flex flex-col justify-between">
     <%- include('./components/navbar'),{currentUser:currentUser}%>
-    <div class=" w-full h-40 z-20 relative">
-        <style>
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-        </style>
-        <div id="map" class=""></div>
-    </div>
+
         <main class="flex justify-center my-auto">
             <%- include('./components/flash',{success:success, error:error})%>
                 <div class="absolute top-0 bottom-0 w-full h-screen z-0 bg-cover bg-no-repeat"
-                    style="background-image:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)), url(https://images.unsplash.com/photo-1478915765319-04e68e890018?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1336&q=80);">
+                    style="background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url(https://images.unsplash.com/photo-1478915765319-04e68e890018?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1336&q=80);">
                 </div>
 
                 <div class="container relative z-10 flex items-center justify-center  text-center rounded-md">
@@ -50,13 +45,6 @@
 
 </body>
 
-<script>
-    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const playgrounds = {features: <%- JSON.stringify(playgrounds) %>};
-</script>
-
-
-<script src="/javascripts/clusterMap.js"></script> -->
 <script src='/javascripts/navbar.js'></script>
 <script src='/javascripts/validation.js'></script>
 <script src='/javascripts/dropZone.js'></script>
