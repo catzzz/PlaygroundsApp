@@ -1,4 +1,4 @@
-# Toha
+# Bee's Playgrounds
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b1b93b02-f278-440b-ae1b-304e9f4c4ab5/deploy-status)](https://app.netlify.com/sites/toha/deploys)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhugo-toha%2Ftoha%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/hugo-toha/toha/goto?ref=main)
@@ -13,7 +13,7 @@
 ![Security Headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fhugo-toha.github.io%2F)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/b7cb60ab/hugo-toha.github.io)
 
-A [Hugo](https://gohugo.io/) theme for a personal portfolio with minimalist design and responsiveness.
+A `Bee's playgrounds` theme for collecting playgrounds that user've been. The playgrounds will show geo location, add and edit pictures, reviews and rating of the playground.
 
 <!-- ![Thumbnail](https://raw.githubusercontent.com/hugo-toha/toha/main/images/screenshot.png) -->
 
@@ -42,7 +42,9 @@ A [Hugo](https://gohugo.io/) theme for a personal portfolio with minimalist desi
 
 ##### Responsive Playgrounds
 
-![List Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/responsive.png)
+<p align="center">
+  <img src="https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/responsive.png" />
+</p>
 
 ##### Show Playground
 
