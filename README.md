@@ -15,9 +15,9 @@
 
 A [Hugo](https://gohugo.io/) theme for a personal portfolio with minimalist design and responsiveness.
 
-![Thumbnail](https://raw.githubusercontent.com/hugo-toha/toha/main/images/screenshot.png)
+<!-- ![Thumbnail](https://raw.githubusercontent.com/hugo-toha/toha/main/images/screenshot.png) -->
 
-- **Example Site:** [hugo-toha.github.io](https://hugo-toha.github.io)
+<!-- - **Example Site:** [hugo-toha.github.io](https://hugo-toha.github.io) -->
 
 ## Features
 
@@ -34,23 +34,23 @@ A [Hugo](https://gohugo.io/) theme for a personal portfolio with minimalist desi
 
 ##### Home Page Sections
 
-![Home Page Sections](https://github.com/catzzz/PlaygroundsApp/screenshots/home.png)
+![Home Page Sections](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/home.png)
 
 ##### List Playgrounds
 
-![List Page](https://github.com/catzzz/PlaygroundsApp/screenshots/playgrounds.png)
+![List Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/playgrounds.png)
 
 ##### Responsive Playgrounds
 
-![List Page](https://github.com/catzzz/PlaygroundsApp/screenshots/responsive.png)
+![List Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/responsive.png)
 
 ##### Show Playground
 
-![Reading Page](https://github.com/catzzz/PlaygroundsApp/screenshots/showPlaygrounds.png)
+![Reading Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/showPlaygrounds.png)
 
 ##### Post new Playgrounds
 
-![Reading Page](https://github.com/catzzz/PlaygroundsApp/screenshots/NewPlayground.png)
+![Reading Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/NewPlayground.png)
 
 #### Installation & Requirements 📦
 
