@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate')%>
 
-  <div class="h-full w-full rounded shadow-md bg-whit max-w-xl mx-auto bg-white mt-8">
-    <h1 class="text-center text-xl font-bold ">Post a new playground</h1>
+  <div class="h-full w-full rounded-md bg-whit max-w-xl mx-auto mt-8">
+    <h1 class="text-center text-2xl font-bold pt-8">Post a new playground</h1>
     <form class="container " action="/playgrounds" method="POST" enctype="multipart/form-data">
       <div class="mb-4">
         <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- scroll area -->
-        <section class="h-full overflow-auto p-2 w-full h-full flex flex-col">
+        <section class="h-full overflow-auto py-4 px-2 w-full h-full flex flex-col">
           <header class="flex justify-center">
             <input id="hidden-input" type="file" multiple class="hidden" name="image" />
             <button id="select-image-button"
@@ -48,34 +48,36 @@
             </button>
           </header>
 
-          <h1 class="pt-8 pb-3 font-semibold sm:text-sm text-gray-900">
+          <h1 class="pt-8 pb-3 font-semibold sm:text-sm text-gray-900 text-center">
             Images To Upload
           </h1>
 
           <ul id="gallery" class="flex flex-1 flex-wrap -m-1">
             <li id="empty" class="h-full w-full text-center flex flex-col items-center justify-center items-center">
-              <img class="mx-auto w-28"
-                src="https://user-images.githubusercontent.com/507615/54591670-ac0a0180-4a65-11e9-846c-e55ffce0fe7b.png"
-                alt="no data" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
               <span class="text-small text-gray-500">No files selected</span>
             </li>
           </ul>
         </section>
 
         <!-- sticky footer -->
-        <footer class="flex justify-between px-8 pb-8 pt-4">
+        <div class="flex justify-between px-8 pt-4 my-4 ">
           <button id="submit"
             class="btn  bg-gray-600 text-white p-2 border-2 border-gray-600 hover:bg-white hover:shadow-md hover:text-gray-600">
             Post a new Playground
           </button>
-          <button id="lear-button"
+          <button id="clear-button"
             class="btn  bg-white text-gray-600 p-2 border-2 border-gray-600 hover:bg-gray-600 hover:shadow-md hover:text-white">
             Cancel
           </button>
-        </footer>
+        </div>
       </article>
     </form>
+    <div class="h-8 w-full"></div>
   </div>
+  
 
   <!-- using two similar templates for simplicity in js code -->
   <template id="file-template">
