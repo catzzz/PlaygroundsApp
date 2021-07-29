@@ -1,15 +1,18 @@
 
-if (process.env.NODE_ENV !== "production"){
+if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
-
 
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
+// Session
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
+
 const ExpressError = require('./utils/ExpressError');
 const ejsMate = require('ejs-mate');
 const passport = require('passport');
@@ -31,18 +34,31 @@ const usersRoutes = require('./routes/users')
 const profileRoutes = require('./routes/profile')
 // end routes
 
-
-mongoose.connect('mongodb://localhost:27017/my-playgrounds', {
+const dbURL= 'mongodb://localhost:27017/my-playgrounds'
+// 'mongodb://localhost:27017/my-playgrounds'
+// process.env.DB_URL
+mongoose.connect(dbURL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
 });
 const app = express();
 
+// Set up local mongo session
+const store = MongoStore.create({
+    mongoUrl:dbURL,
+    serect:'thisisserect!',
+    touchAfter:24 * 60 * 60
+})
+
+store.on("error",function(e){
+    console.log("Session store error")
+})
 // session config
 const sessionConfig = {
+    store:store,
     name:'session',
-    secret: 'thisshouldbeabettersecret!',
+    secret: 'thisisserect!',
     resave: false,
     saveUninitialized: true,
     cookie: {
