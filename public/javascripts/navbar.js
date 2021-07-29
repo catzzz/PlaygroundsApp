@@ -1,17 +1,30 @@
 const profileBtn = document.getElementById("user-menu-button");
 const mobileMenuBtnOpen = document.getElementById('mobile-menu-btn-open');
 const mobileMenuBtnClose = document.getElementById('mobile-menu-btn-close');
-
+const route = window.location.pathname;
 const navbar = document.getElementById('navbar');
+const mobile = document.getElementById('mobile-menu');
 if(navbar){
-    const route = window.location.pathname;
-  
+
     if(route === '/'){
       
-        navbar.style.backgroundColor ="transparent";
-        navbar.style.borderBottom ="1px solid white";
+        navbar.style.backgroundColor ="rgba(0,0,0,.6)";
+   
         
     }
+}
+
+if(mobile){
+    if(route === '/'){
+      
+        mobile.style.backgroundColor ="rgba(0,0,0,.6)";
+   
+        
+    }
+    if(screen.width >=768) {
+        coloseMobileMenu();
+    }
+
 }
 
 
@@ -31,7 +44,7 @@ if(mobileMenuBtnClose){
 
 
 function openMobileMenu(){
-    console.log("toggle open menu")
+    
     mobileMenuBtnOpen.classList.toggle("block")
     mobileMenuBtnOpen.classList.toggle("hidden")
     mobileMenuBtnClose.classList.toggle("block")
@@ -39,6 +52,9 @@ function openMobileMenu(){
     const mobileMenu = document.getElementById("mobile-menu");
     mobileMenu.classList.toggle("block")
     mobileMenu.classList.toggle("hidden")
+    
+    
+
 }
 
 
