@@ -26,7 +26,7 @@ module.exports.index = async (req, res) => {
         page = 1;
     }
 
-    const playgrounds = await Playground.find({}).skip(skipPage).limit(limit);
+    const playgrounds = await Playground.find({}).skip(skipPage).limit(limit).populate('author');
     
     res.render('playgrounds/index', { playgrounds, page ,totalLength, limit })
 }

@@ -14,18 +14,7 @@ if(navbar){
     }
 }
 
-if(mobile){
-    if(route === '/'){
-      
-        mobile.style.backgroundColor ="rgba(0,0,0,.6)";
-   
-        
-    }
-    if(screen.width >=768) {
-        coloseMobileMenu();
-    }
 
-}
 
 
 
@@ -54,7 +43,16 @@ function openMobileMenu(){
     mobileMenu.classList.toggle("hidden")
     
     
-
+    if(mobile){
+        if(route === '/'){
+          
+            mobile.style.backgroundColor ="rgba(0,0,0,.6)";
+       
+            
+        }
+    
+    
+    }
 }
 
 
