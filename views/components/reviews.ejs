@@ -4,7 +4,7 @@
        
         <h3 class="font-bold text-xl ">Leave a review</h3>
 
-        <form action="/playgrounds/<%=playground.id%>/reviews" method="POST" class="mt-3">
+        <form action="/playgrounds/<%=playground.id%>/reviews" method="POST" class="">
             <div class="mt-3">
                 <!-- <label for="rating" class="">Rating</label>
                 <input type="range" min="1" max="5" name="review[rating]" id="rating"> -->
@@ -45,17 +45,14 @@
                 <!-- You have to be logged in to be abled to edit and delete -->
                 <% if(currentUser && review.author.equals(currentUser._id)){%>
                 <div class="flex justify-between mt-3 ">
-                    <a class="btn text-primary border-primary md:border-2 hover:bg-primary hover:text-gray-100 transition ease-out duration-500"
-                        href="/playgrounds/<%=playground._id%>/edit">Edit</a>
+                   
                     <form class="d-inline" action="/playgrounds/<%=playground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                         <button
-                            class="btn text-white bg-primary md:border-2 hover:bg-white hover:text-primary border-primary transition ease-out duration-500">Delete</button>
+                            class="btn text-white bg-primary md:border-2 hover:bg-white hover:text-primary border-primary transition ease-out duration-500 ">Delete</button>
                     </form>
                 </div>
                 <%} %>
-                <div class="text-gray-600 text-xs mt-2 ">
-                    2 days ago
-                </div>
+
             </div>
         </div>
         <% } %>
