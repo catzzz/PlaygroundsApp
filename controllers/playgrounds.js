@@ -16,7 +16,7 @@ module.exports.index = async (req, res) => {
     // Get total length for pagenation
     const totalLength = await (await Playground.find({})).length;
     
-    const limit = 6;
+    const limit = 8;
     // Skip pages
     let skipPage = (page - 1) * limit;
 

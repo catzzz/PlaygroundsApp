@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name='description' content="Bee's playgrounds colleciton " />
     <meta name="keywords" content="families, playgrounds, fun">
+    <meta name="author" content="Jimmy Leu">
+    <link rel="icon" href="/images/favicon.png">
     <title>BEE"S PLAYGROUND</title>
+
     <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
 
     <!-- mapbox -->
@@ -18,12 +21,13 @@
 
 <body class="relative bg-gray-100 h-screen flex flex-col justify-between">
     <%- include('../components/navbar'),{currentUser:currentUser}%>
-    <main class="">
+    <main class="relative h-full">
         <%- include('../components/flash',{success:success, error:error})%>
         <%- body %>
     </main>
+    <div class="mt-auto">
     <%- include('../components/footer')%>
-
+</div>
 </body>
 <script src='/javascripts/navbar.js'></script>
 <script src='/javascripts/validation.js'></script>

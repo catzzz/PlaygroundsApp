@@ -1,37 +1,37 @@
 <% layout('layouts/boilerplate')%>
-    
-    
-    
-    <div class="container py-6 flex flex-col content-between">
-
-        <!-- map -->
-        <div class="w-full h-60 relative">
+    <div class="container mt-8">
+    <div class="w-full h-60 relative rounded-md overflow-hidden">
 
 
-            <style>
-                #map {
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    width: 100%;
-                }
-            </style>
-            <div id="map" class=""></div>
-        </div>
+        <style>
+            #map {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+        <div id="map" class=""></div>
+    </div>
+
+</div>
+
+    <div class="container flex flex-col">
+
+ 
+        <%- include('../components/pagination.ejs',{length:totalLength, page:page, limit:limit}) %>
         <!-- playgrounds list -->
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-8  ">
+       
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-8 w-full h-full mb-8 ">
 
 
             <% for (let playground of playgrounds){%>
                 <%- include('../components/card',{playground:playground})%>
                     <% }%>
         </div>
-        <div class="">
 
-
-            <%- include('../components/pagination.ejs',{length:totalLength, page:page, limit:limit}) %>
-        </div>
     </div>
+
     <!-- include javascript for cluster map -->
     <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';

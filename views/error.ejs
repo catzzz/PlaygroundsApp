@@ -1,9 +1,15 @@
 <% layout('layouts/boilerplate')%>
-    <div class="flex justify-center items-center">
+    <div class="w-full h-full  flex items-center">
         <div class="flex w-full justify-center text-2xl p-3 items-center">
-            <h2 class="font-bold mx-5"><%=err.statusCode%></h2>
-            <span class="border-l-2 border-gray-300 px-5 uppercase text-sm">
-                <%= err.message %>
+            <h2 class="font-bold mx-5 text-5xl"><%=err.statusCode%></h2>
+            <span class="border-l-2 border-gray-300 px-5 uppercase text-md">
+                <% if(process.env.NODE_ENV !== "production") {%>
+
+                    <p><%= err.message %></p>
+             
+                <%}else{%>
+                    <p>Something wrong !!</p>
+                <%}%>
             </span>
 
         </div>
