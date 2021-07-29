@@ -34,7 +34,8 @@ const usersRoutes = require('./routes/users')
 const profileRoutes = require('./routes/profile')
 // end routes
 
-const dbURL= 'mongodb://localhost:27017/my-playgrounds'
+const dbURL= process.env.DB_URL || 'mongodb://localhost:27017/my-playgrounds'
+const serect = process.env.SERECT || "thisisaserect!!"
 // 'mongodb://localhost:27017/my-playgrounds'
 // process.env.DB_URL
 mongoose.connect(dbURL, {
@@ -47,7 +48,7 @@ const app = express();
 // Set up local mongo session
 const store = MongoStore.create({
     mongoUrl:dbURL,
-    serect:'thisisserect!',
+    serect:serect,
     touchAfter:24 * 60 * 60
 })
 
@@ -58,7 +59,7 @@ store.on("error",function(e){
 const sessionConfig = {
     store:store,
     name:'session',
-    secret: 'thisisserect!',
+    secret: serect,
     resave: false,
     saveUninitialized: true,
     cookie: {
