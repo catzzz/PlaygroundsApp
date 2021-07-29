@@ -36,8 +36,7 @@ const profileRoutes = require('./routes/profile')
 
 const dbURL= process.env.DB_URL || 'mongodb://localhost:27017/my-playgrounds'
 const serect = process.env.SERECT || "thisisaserect!!"
-// 'mongodb://localhost:27017/my-playgrounds'
-// process.env.DB_URL
+
 mongoose.connect(dbURL, {
     useNewUrlParser: true,
     useCreateIndex: true,
