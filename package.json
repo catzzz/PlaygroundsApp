@@ -1,10 +1,10 @@
 {
-  "name": "my-playground-backend",
+  "name": "my_playgrounds",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn build:css && nodemon app.js",
+    "start": "npm run build:css && nodemon app.js",
     "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css"
   },
   "keywords": [],
