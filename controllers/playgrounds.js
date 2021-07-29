@@ -19,7 +19,7 @@ module.exports.index = async (req, res) => {
     const limit = 6;
     // Skip pages
     let skipPage = (page - 1) * limit;
-    console.log(page);
+
     // query back to head if over length
     if (page > Math.ceil(totalLength/limit)) {
         skipPage = 0 ;
@@ -64,7 +64,7 @@ module.exports.showPlayground = async (req, res, next) => {
             path:'author'
         }
     }).populate('author');
-    console.log(playground);
+
     if (!playground) {
         req.flash('error', 'Cannot find that playground!');
         return res.redirect('/playgrounds');

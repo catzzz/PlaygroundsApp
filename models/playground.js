@@ -9,7 +9,7 @@ const ImageSchema = new Schema({
 });
 
 ImageSchema.virtual('thumbnail').get(function () {
-    return this.url.replace('/upload', '/upload/w_200');
+    return this.url.replace('/upload', '/upload/w_300');
 });
 
 // in order to get virtual properties in result , we have to set up opts;
