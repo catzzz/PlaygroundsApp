@@ -60,27 +60,27 @@ A `Bee's playgrounds` theme for collecting playgrounds that user've been. The pl
   ```
 
   #### packages 📦
-  - cloudinary
-  - connect-flash
-  - connect-mongo
-  - dotenv
-  - ejs
-  - ejs-mate
-  - express
-  - express-mongo-sanitize
-  - express-session
-  - helmet
-  - joi
-  - method-override
-  - mongoose
-  - multer
-  - multer-storage-cloudinary
-  - passport
-  - passport-local
-  - passport-local-mongoose
-  - postcss-cli
-  - sanitize-html
-  - @mapbox/mapbox-sdk
+  - [cloudinary](https://www.npmjs.com/package/cloudinary)
+  - [connect-flash](https://www.npmjs.com/package/connect-flash)
+  - [connect-mongo](https://www.npmjs.com/package/connect-mongo)
+  - [dotenv](https://www.npmjs.com/package/dotenv)
+  - [ejs](https://www.npmjs.com/package/ejs)
+  - [ejs-mate](https://www.npmjs.com/package/ejs-mate)
+  - [express](https://www.npmjs.com/package/express)
+  - [express-mongo-sanitize](express-mongo-sanitize)
+  - [express-session](https://www.npmjs.com/package/express-session)
+  - [helmet](https://www.npmjs.com/package/helmet)
+  - [joi](https://www.npmjs.com/package/joi)
+  - [method-override](https://www.npmjs.com/package/method-override)
+  - [mongoose](https://www.npmjs.com/package/mongoose)
+  - [multer](https://www.npmjs.com/package/multer)
+  - [multer-storage-cloudinary](https://www.npmjs.com/package/multer-storage-cloudinary)
+  - [passport](https://www.npmjs.com/package/passport)
+  - [passport-local](https://www.npmjs.com/package/passport-local)
+  - [passport-local-mongoose](https://www.npmjs.com/package/passport-local-mongoose)
+  - [postcss-cli](https://www.npmjs.com/package/postcss-cli)
+  - [sanitize-html](https://www.npmjs.com/package/sanitize-html)
+  - [@mapbox/mapbox-sdk](https://www.npmjs.com/package/@mapbox/mapbox-sdk)
 
 ## Installation & Requirements 
 
@@ -120,37 +120,39 @@ A `Bee's playgrounds` theme for collecting playgrounds that user've been. The pl
   - [x] view **Playgrounds**
 
 - [x] **Playgrounds**
-  - [x] List playgrounds with limit of eight per page
-  - [x] List playgrounds' geo location in map by mapbox
+  - [x] List playgrounds
+  - [x] List playgrounds' Geo location in map by mapbox
+  - [x] Pagenation
     - [x] **Show Playground**
-      - [x] show reviews
-      - [x] add a review
-      - [x] delete a review
+      - [x] Show reviews
+      - [x] Add a review
+      - [x] Delete a review
     - [x] **Edit Playground**
-      - [x] add multi images of a playground
-      - [x] delet multi images of a playground
-      - [x] edit title , description, location of a playground
+      - [x] Add multi images of a playground
+      - [x] Delet multi images of a playground
+      - [x] Edit title , description, location of a playground
 
 - [x] **New Playground**
-  - [x] add multi images of a playground
-  - [x] add title, location and desciption of a playground
+  - [x] Add multiple images of a playground
+  - [x] Add a title, a location and a desciption of a playground
 
 - [x] **Login**
   - [x] Login with username
-  - [x] username, email and password validation
+  - [x] Username, email and password validation
 
 - [x] **Register**
-  - [x] username
-  - [x] email
-  - [x] password
-  - [x] confirm password
+  - [x] Username
+  - [x] Email
+  - [x] Password
+  - [x] Confirm password
+  - [x] Username, email, password and confirmed password validation
   - [x]  **Policy**
-    - [x] show privacy policy
+    - [x] Show privacy policy
 
 - [x] **Profile**
   - [x] upload user image
-  - [x] eidt username
-  - [x] eidt email
+  - [x] Edit username
+  - [x] Edit email
 
 ## Attribution
 
