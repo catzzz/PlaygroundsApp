@@ -1,23 +1,16 @@
-# Bee's Playgrounds
+![Lines of code](https://img.shields.io/tokei/lines/github/catzzz/PlaygroundsApp)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/catzzz/PlaygroundsApp)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b1b93b02-f278-440b-ae1b-304e9f4c4ab5/deploy-status)](https://app.netlify.com/sites/toha/deploys)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhugo-toha%2Ftoha%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/hugo-toha/toha/goto?ref=main)
-![Repository Size](https://img.shields.io/github/repo-size/hugo-toha/toha)
-![Lines of Codes](https://img.shields.io/tokei/lines/github/hugo-toha/toha)
-![Contributor](https://img.shields.io/github/contributors/hugo-toha/toha)
-![Latest Release](https://img.shields.io/github/v/release/hugo-toha/toha?include_prereleases)
-![Last Commit](https://img.shields.io/github/last-commit/hugo-toha/toha)
-![Open Issues](https://img.shields.io/github/issues/hugo-toha/toha?color=important)
-![Open Pull Requests](https://img.shields.io/github/issues-pr/hugo-toha/toha?color=yellowgreen)
-![License](https://img.shields.io/github/license/hugo-toha/toha)
-![Security Headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fhugo-toha.github.io%2F)
-[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/b7cb60ab/hugo-toha.github.io)
+![NodeJS](https://img.shields.io/badge/node.js-%2343853D.svg?style=for-the-badge&logo=node.js&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+# Bee's Playgrounds
 
 A `Bee's playgrounds` theme for collecting playgrounds that user've been. The playgrounds will show geo location, add and edit pictures, reviews and rating of the playground.
 
-<!-- ![Thumbnail](https://raw.githubusercontent.com/hugo-toha/toha/main/images/screenshot.png) -->
-
-<!-- - **Example Site:** [hugo-toha.github.io](https://hugo-toha.github.io) -->
 
 ## Features
 
@@ -50,23 +43,76 @@ A `Bee's playgrounds` theme for collecting playgrounds that user've been. The pl
 
 ![Reading Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/showPlaygrounds.png)
 
+
 ##### Post new Playgrounds
 
 ![Reading Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/NewPlayground.png)
 
-#### Installation & Requirements 📦
+<!-- GETTING STARTED -->
+## Getting Started
 
-- Clone the repository and modify the content of <b>index.html</b> 
-- run `npm install`
+## Prerequisites
 
-- Hugo Version 0.68.0 or higher
+* npm
 
-## Installation & Deployment 
-- Clone the repository and modify the content of <b>index.html</b> 
-- Add or remove images from `assets/img/` directory as per your requirement.
-- Update the info of `projects` folder according to your need
-- Use [Github Pages](https://create-react-app.dev/docs/deployment/#github-pages) to create your own website.
-- To deploy your website, first you need to create github repository with name `<your-github-username>.github.io` and push the generated code to the `master` branch.
+  ```sh
+  npm install npm@latest -g
+  ```
+
+  #### packages 📦
+  - cloudinary
+  - connect-flash
+  - connect-mongo
+  - dotenv
+  - ejs
+  - ejs-mate
+  - express
+  - express-mongo-sanitize
+  - express-session
+  - helmet
+  - joi
+  - method-override
+  - mongoose
+  - multer
+  - multer-storage-cloudinary
+  - passport
+  - passport-local
+  - passport-local-mongoose
+  - postcss-cli
+  - sanitize-html
+  - @mapbox/mapbox-sdk
+
+## Installation & Requirements 
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/catzzz/PlaygroundsApp.git
+   ```
+
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+
+3. create [CLOUDINARY](https://cloudinary.com/) API key in `.env`
+   ```sh
+    CLOUDINARY_CLOUD_NAME=`YOUR CLOUDINARY NAME`
+    CLOUDINARY_KEY=`YOUR CLOUDINARY KEY`
+    CLOUDINARY_SECRET=`YOUR CLOUDINARY SECRET`.
+   ```
+
+4. create [MAPBOX](https://www.mapbox.com/) API key in `.evn`
+   ```sh
+    MAPBOX_TOKEN=`YOUR MAPBOX TOKEN`
+   ```  
+
+5. create [MONGOALTAS](https://www.mongodb.com/cloud/atlas) url in `.env`
+
+   ```sh
+    DB_URL=`YOUR MONGODB URL`
+   ```
+
+
 
 ## Project Roadmap
 

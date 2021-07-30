@@ -57,7 +57,7 @@ function openMobileMenu(){
 
 
 function coloseMobileMenu(){
-    console.log("toggle close menu")
+    
     mobileMenuBtnClose.classList.toggle("block")
     mobileMenuBtnClose.classList.toggle("hidden")
     mobileMenuBtnOpen.classList.toggle("block")
