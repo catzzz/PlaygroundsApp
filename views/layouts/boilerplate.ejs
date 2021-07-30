@@ -21,18 +21,18 @@
 
 <body class="relative bg-gray-100 h-full flex flex-col justify-between">
     <%- include('../components/navbar'),{currentUser:currentUser}%>
-    <main class="relative h-full">
+    <main class="w-full h-full " style="min-height: calc(100vh - 119px)" >
         <%- include('../components/flash',{success:success, error:error})%>
         <%- body %>
     </main>
-    <div class="mt-auto">
+
     <%- include('../components/footer')%>
-</div>
+
 </body>
 <script src='/javascripts/navbar.js'></script>
 <script src='/javascripts/validation.js'></script>
 <script src='/javascripts/dropZone.js'></script>
 <script src='/javascripts/uploadImage.js'></script>
-
+<script src='/javascripts/flash.js'></script>
 </html>
 
