@@ -20,6 +20,9 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user')
 const flash = require('connect-flash');
 
+// password reset 
+const nodemailer = require("nodemailer");
+
 
 
 // Security
