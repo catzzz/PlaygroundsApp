@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "npm run tw-prod && node app.js",
     "watch": "npm run build:css && nodemon app.js",
-    "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css"
+    "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css",
+    "tw-prod": "NODE_ENV=production tailwind build -i public/stylesheets/tailwind.css -o public/stylesheets/style.css"
   },
   "keywords": [],
   "author": "",

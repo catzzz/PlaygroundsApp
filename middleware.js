@@ -3,6 +3,8 @@ const { playgroundSchema, reviewSchema } = require('./schemas.js');
 const ExpressError = require('./utils/ExpressError');
 const Playground = require('./models/playground');
 const Review = require('./models/review');
+const validateEmail = require('./utils/validateEmail')
+const isRequired = (value) => (value === "" ? false : true);
 
 module.exports.validatePlayground = (req, res, next) => {
 
@@ -46,4 +48,31 @@ module.exports.validateReview = (req, res, next) => {
     } else {
         next();
     }
+}
+
+// Validate email 
+
+module.exports.emailValidateion = (req, res, next) =>{
+    const email = req.body.resetEmail
+    if(!isRequired(email)){
+        req.flash('error', 'Email cannot be blank');
+        return res.redirect(`/forgotPassword`);
+    }
+    if(!validateEmail(email)) {
+        req.flash('error', 'You need to type valid email address!');
+        return res.redirect(`/forgotPassword`);
+    }
+    next();
+
+}
+
+// validate password 
+module.exports.passwordValidateion = (req, res, next) =>{
+    const password = req.body.password
+    if(!isRequired(password)){
+        req.flash('error', 'password cannot be blank');
+        return res.redirect(`/resetPassword`);
+    }
+    next();
+
 }

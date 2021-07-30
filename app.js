@@ -20,8 +20,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user')
 const flash = require('connect-flash');
 
-// password reset 
-const nodemailer = require("nodemailer");
+
 
 
 
@@ -170,7 +169,9 @@ app.use('/playgrounds/:id/reviews', reviewsRoutes);
 app.use('/profile', profileRoutes);
 app.use('/', usersRoutes);
 
-//profile
+
+
+
 
 // privacy policy
 app.get('/policy',(req, res)=>{

@@ -1,37 +1,46 @@
 <% layout('layouts/boilerplate')%>
 
 
-        <div class="h-full w-full flex flex-col justify-center items-center" style="min-height:calc(100vh - 119px);">
-            <form id="login" class="max-w-md bg-white shadow-sm flex flex-col p-5 w-full rounded" action="/login"
-                method="POST">
-                <h1 class="text-gray-800 font-bold text-2xl text-center">Log In</h1>
+    <div class="h-full w-full flex flex-col justify-center items-center" style="min-height:calc(100vh - 119px);">
+        <form id="login" class="max-w-md bg-white shadow-sm flex flex-col p-5 w-full rounded" action="/login"
+            method="POST">
+            <h1 class="text-gray-800 font-bold text-2xl text-center">Log In</h1>
 
-                <div class="">
-                    <label for="username" class="font-bold my-3 block">Username:</label>
-                    <input type="text" name="username" id="username" autocomplete="off"
-                        class="block border border-grey-light w-full p-3 rounded mb-4">
-                    <small class="text-primary text-xs"></small>
-                </div>
-
-                <div class="">
-                    <label for="password" class="font-bold my-3 block">Password:</label>
-                    <input type="password" name="password" id="password" autocomplete="off"
-                        class="block border border-grey-light w-full p-3 rounded mb-4">
-                    <small class="text-primary text-xs"></small>
-                </div>
-
-
-                <div class="">
-                    <input type="submit" value="Log In"
-                        class="mt-8 w-full text-center py-3 rounded bg-blue-500 text-white hover:bg-blue-700 focus:outline-none my-1">
-                </div>
-
-            </form>
-
-            <div class="text-gray-700 mt-6 text-center">
-                Don&apos;s have an account?
-                <a class="no-underline border-b border-blue-500 text-blue-500" href="/register">
-                    Register
-                </a>.
+            <div class="">
+                <label for="username" class="font-bold my-3 block">Username:</label>
+                <input type="text" name="username" id="username" autocomplete="off"
+                    class="block border border-grey-light w-full p-3 rounded mb-4">
+                <small class="text-primary text-xs"></small>
             </div>
+
+            <div class="">
+                <label for="password" class="font-bold my-3 block">Password:</label>
+                <input type="password" name="password" id="password" autocomplete="off"
+                    class="block border border-grey-light w-full p-3 rounded mb-4">
+                <small class="text-primary text-xs"></small>
+            </div>
+
+
+            <div class="">
+                <input type="submit" value="Log In"
+                    class="mt-8 w-full text-center py-3 rounded bg-blue-500 text-white hover:bg-blue-700 focus:outline-none">
+            </div>
+
+            <div class="w-full h-full text-center mt-8">
+                <p> Don&apos;s have an account?&nbsp; 
+                    <a class="no-underline border-b border-blue-500 text-blue-500 inline-block" href="/register">
+                        Register
+                    </a>
+                </p>
+            </div>
+
+        </form>
+        <div class="max-w-md w-full flex justify-end mt-3 text-xs ">
+
+            <a class="text-blue-500 border-b border-blue-500" href="/forgotPassword" >Forgot your password?</a>
+
         </div>
+
+    </div>
+
+   
