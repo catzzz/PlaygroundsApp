@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
-const {emailValidateion} = require('../middleware');
+
 
 const ImageSchema = new Schema({
     url: String,

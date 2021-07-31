@@ -139,7 +139,10 @@ A `Bee's playgrounds` theme for collecting playgrounds that user've been. The pl
 - [x] **Login**
   - [x] Login with username
   - [x] Username, email and password validation
-
+    - [x] **ForgetPassword**
+      - [x] Send reset email
+    - [x] **ResetPassword**
+      - [x] Reset password
 - [x] **Register**
   - [x] Username
   - [x] Email

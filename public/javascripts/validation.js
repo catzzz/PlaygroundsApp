@@ -1,10 +1,8 @@
-const usernameEl = document.querySelector("#username");
-const emailEl = document.querySelector("#email");
-const passwordEl = document.querySelector("#password");
-const confirmPasswordEl = document.querySelector("#confirm-password");
 
+const forgotPasswordForm = document.querySelector("#forgot_password");
 const signupForm = document.querySelector("#signup");
 const loginForm = document.querySelector("#login");
+const resetPasswordForm = document.querySelector("#reset_password");
 const isRequired = (value) => (value === "" ? false : true);
 const isBetween = (length, min, max) =>
   length < min || length > max ? false : true;
@@ -33,8 +31,10 @@ const showError = (input, message) => {
   // get the form-field element
   const formField = input.parentElement;
   // add the error class
-  formField.classList.remove("success");
-  formField.classList.add("error");
+  // formField.classList.remove("success");
+  // formField.classList.add("error");
+  input.classList.remove("success");
+  input.classList.add("error");
 
   // show the error message
   const error = formField.querySelector("small");
@@ -46,21 +46,22 @@ const showSuccess = (input) => {
   const formField = input.parentElement;
 
   // remove the error class
-  formField.classList.remove("error");
-  formField.classList.add("success");
+  // formField.classList.remove("error");
+  // formField.classList.add("success");
+  input.classList.remove("error");
+  input.classList.add("success");
 
   // hide the error message
   const error = formField.querySelector("small");
   error.textContent = "";
 };
 
-const checkUsername = () => {
- 
+const checkUsername = (usernameEl) => {
   let valid = false;
   const min = 3,
     max = 25;
   const username = usernameEl.value.trim();
-
+  console.log(username);
   if (!isRequired(username)) {
     showError(usernameEl, "Username cannot be blank.");
   } else if (!isBetween(username.length, min, max)) {
@@ -75,7 +76,7 @@ const checkUsername = () => {
   return valid;
 };
 
-const checkEmail = () => {
+const checkEmail = (emailEl) => {
   let valid = false;
   const email = emailEl.value.trim();
   if (!isRequired(email)) {
@@ -89,7 +90,7 @@ const checkEmail = () => {
   return valid;
 };
 
-const checkPassword = () => {
+const checkPassword = (passwordEl) => {
   let valid = false;
 
   const password = passwordEl.value.trim();
@@ -110,7 +111,7 @@ const checkPassword = () => {
   return valid;
 };
 
-const checkConfirmPassword = () => {
+const checkConfirmPassword = (passwordEl, confirmPasswordEl) => {
   let valid = false;
   // check confirm password
   const confirmPassword = confirmPasswordEl.value.trim();
@@ -144,83 +145,140 @@ const debounce = (fn, delay = 500) => {
 };
 
 // instance input feedback
-if(loginForm){
-    loginForm.addEventListener(
-        "input",
-        debounce(function (e) {
-          switch (e.target.id) {
-            case "username":
-              checkUsername();
-              break;
-            case "password":
-              checkPassword();
-              break;
-          }
-        })
-      );
+if (loginForm) {
+  const usernameField = loginForm.querySelector(".input-username");
+  const passwordField = loginForm.querySelector(".input-password");
 
-      loginForm.addEventListener("submit", function (e) {
-        // prevent the form from submitting
-        e.preventDefault();
-        // validate fields
-        let isUsernameValid = checkUsername(),
-          isPasswordValid = checkPassword();
+  // realtime error feedback
+  loginForm.addEventListener(
+    "input",
+    debounce(function (e) {
       
-        let isFormValid = isUsernameValid && isPasswordValid;
-      
-        // submit to the server if the form is valid
-        if (isFormValid) {
-            e.currentTarget.submit();
-        }
-      });
-      
-}
+      if(e.target.classList.contains("input-username")){
+        checkUsername(usernameField);
+      }
+      if(e.target.classList.contains("input-password")){
+        checkPassword(passwordField);
+      }
+    })
+  );
 
-if(signupForm){
-    signupForm.addEventListener(
-        "input",
-        debounce(function (e) {
-          switch (e.target.id) {
-            case "username":
-              checkUsername();
-              break;
-            case "email":
-              checkEmail();
-              break;
-            case "password":
-              checkPassword();
-              break;
-            case "confirm-password":
-              checkConfirmPassword();
-              break;
-          }
-        })
-      );
-      
-      signupForm.addEventListener("submit", function (e) {
-        // prevent the form from submitting
-        e.preventDefault();
-        // validate fields
-        let isUsernameValid = checkUsername(),
-          isEmailValid = checkEmail(),
-          isPasswordValid = checkPassword(),
-          isConfirmPasswordValid = checkConfirmPassword();
-      
-        let isFormValid =
-          isUsernameValid &&
-          isEmailValid &&
-          isPasswordValid &&
-          isConfirmPasswordValid;
-      
-        // submit to the server if the form is valid
-        if (isFormValid) {
-            e.currentTarget.submit();
-        }
-      });
+  loginForm.addEventListener("submit", function (e) {
+    // prevent the form from submitting
+    e.preventDefault();
+    // validate fields
+    let isUsernameValid = checkUsername(usernameField),
+      isPasswordValid = checkPassword(passwordField);
+
+    let isFormValid = isUsernameValid && isPasswordValid;
+
+    // submit to the server if the form is valid
+    if (isFormValid) {
+      e.currentTarget.submit();
+    }
+  });
 }
 
 
+//  validation of sign up form
+if (signupForm) {
 
+  const usernameField = signupForm.querySelector(".input-username");
+  const emailField = signupForm.querySelector(".input-email");
+  const passwordField = signupForm.querySelector(".input-passowrd");
+  const confirmedPasswordField = signupForm.querySelector(".input-confirmed-password");
+  signupForm.addEventListener(
+    "input",
+    debounce(function (e) {
+      if(e.target.classList.contains("input-username")){
+        checkUsername(usernameField);
+      }
+      if(e.target.classList.contains("input-password")){
+        checkPassword(passwordField);
+      }
+      if(e.target.classList.contains("input-email")){
+        checkEmail(emailField);
+      }
+      if(e.target.classList.contains("input-confirmed-password")){
+        checkConfirmPassword(passwordField,confirmedPasswordField);
+      }
+    })
+  );
+
+  signupForm.addEventListener("submit", function (e) {
+    // prevent the form from submitting
+    e.preventDefault();
+    // validate fields
+    let isUsernameValid = checkUsername(usernameField),
+      isEmailValid = checkEmail(emailField),
+      isPasswordValid = checkPassword(passwordField),
+      isConfirmPasswordValid = checkConfirmPassword(passwordField,confirmedPasswordField);
+
+    let isFormValid =
+      isUsernameValid &&
+      isEmailValid &&
+      isPasswordValid &&
+      isConfirmPasswordValid;
+
+    // submit to the server if the form is valid
+    if (isFormValid) {
+      e.currentTarget.submit();
+    }
+  });
+}
+
+// Validate for forgetPassword 
+
+if (forgotPasswordForm) {
+  const emailField = forgotPasswordForm.querySelector(".input-email");
+  
+  forgotPasswordForm.addEventListener(
+    "input",
+    debounce(function (e) {
+
+      if(e.target.classList.contains("input-email")){
+        checkEmail(emailField);
+      }
+
+    })
+  );
+  forgotPasswordForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let isEmailValid = checkEmail(emailField);
+    let isFormValid = isEmailValid;
+    if (isFormValid) {
+      e.currentTarget.submit();
+    }
+  });
+}
+
+// reset password form 
+if (resetPasswordForm) {
+  const passwordField = resetPasswordForm.querySelector(".input-password");
+  const confirmPasswordField = resetPasswordForm.querySelector(".input-confirmed-password");
+  resetPasswordForm.addEventListener(
+    "input",
+    debounce(function (e) {
+  
+      if(e.target.classList.contains("input-password")){
+        checkPassword(passwordField);
+      }
+      if(e.target.classList.contains("input-confirmed-password")){
+        checkConfirmPassword(passwordField,confirmPasswordField);
+      }
+
+    })
+  );
+  resetPasswordForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let isPasswordValid = checkPassword(passwordField);
+    let isConfirmPasswordValid =  checkConfirmPassword(passwordField,confirmPasswordField);
+    let isFormValid = isPasswordValid && isConfirmPasswordValid;
+    if (isFormValid) {
+      e.currentTarget.submit();
+    }
+  });
+}
 
 
 /*---------------------- reference from ---------------------------------
