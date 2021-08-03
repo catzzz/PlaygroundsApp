@@ -2,7 +2,9 @@
 
 
     <div class="container my-auto max-w-7xl mx-auto grid md:grid-cols-5 gap-5 h-full py-8">
-        
+
+        <!-- if use not logged in and no reviews . center the show page -->
+
         <% if(!currentUser && !playground.reviews.length) {%>
         <!-- if user dose not logged in and no reviews . center the show page by adding one empty col span-->
         <div class="md:col-span-1"></div>
@@ -34,6 +36,7 @@
                     </p>
                     <!-- include author image and author name -->
                     <%- include('../components/userLabel.ejs',{images:playground.author.images, username:playground.author.username}) %>
+                    
                 </div>
                 
                 <div id='map' style='width: full; height: 300px;'></div>
