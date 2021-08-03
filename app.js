@@ -36,7 +36,7 @@ const usersRoutes = require('./routes/users')
 const profileRoutes = require('./routes/profile')
 // end routes
  
-const dbURL= process.env.DB_URL || 'mongodb://localhost:27017/my-playgrounds'
+dbURL= process.env.DB_URL || 'mongodb://localhost:27017/my-playgrounds'
  
 const serect = process.env.SERECT || "thisisaserect!!"
 
