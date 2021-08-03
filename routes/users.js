@@ -29,14 +29,14 @@ router.get("/logout", users.logout);
 module.exports = router;
 
 // forget password page
-router
-  .route("/forgotPassword")
-  .get(users.renderForgotPassword)
-  .post(emailValidateion, users.sendResetEmail);
+// router
+//   .route("/forgotPassword")
+//   .get(users.renderForgotPassword)
+//   .post(emailValidateion, users.sendResetEmail);
 
 // send email to reset password
 
-router
-  .route("/resetPassword/:userId/:token")
-  .get(users.renderResetPassword)
-  .post(passwordValidateion, users.resetPassword);
+// router
+//   .route("/resetPassword/:userId/:token")
+//   .get(users.renderResetPassword)
+//   .post(passwordValidateion, users.resetPassword);
