@@ -1,5 +1,8 @@
 const nodemailer = require("nodemailer");
 
+const ExpressError = require('./ExpressError');
+
+
 const sendEmail = async (email, subject, text) => {
     try {
         const transporter = nodemailer.createTransport({

@@ -27,26 +27,26 @@ A `Bee's playgrounds` theme for collecting playgrounds that user've been. The pl
 
 ##### Home Page Sections
 
-![Home Page Sections](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/home.png)
+![Home Page Sections](/screenshots/home.png)
 
 ##### List Playgrounds
 
-![List Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/playgrounds.png)
+![List Page](/screenshots/playgrounds.png)
 
 ##### Responsive Playgrounds
 
 <p align="center">
-  <img src="https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/responsive.png" />
+  <img src="/screenshots/responsive.png" />
 </p>
 
 ##### Show Playground
 
-![Reading Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/showPlaygrounds.png)
+![Reading Page](/screenshots/showPlaygrounds.png)
 
 
 ##### Post new Playgrounds
 
-![Reading Page](https://github.com/catzzz/PlaygroundsApp/blob/main/screenshots/NewPlayground.png)
+![Reading Page](/screenshots/NewPlayground.png)
 
 <!-- GETTING STARTED -->
 ## Getting Started

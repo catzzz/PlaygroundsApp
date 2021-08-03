@@ -1,7 +1,10 @@
 const User = require("../models/user");
 const Token = require("../models/token");
 const sendEmail = require("../utils/sendEmail");
-const crypto = require('crypto');
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
 module.exports.renderRegister = (req, res) => {
   res.render("users/register");
@@ -56,6 +59,13 @@ module.exports.renderForgotPassword = (req, res) => {
 // send reset email
 
 
+const oAuth2Client = new google.auth.OAuth2(
+  process.env.GMAIL_CLIENT_ID,
+  process.env.GMAIL_CLIENT_SECRET,
+  process.env.GMAIL_REDIRECT_URL
+);
+
+oAuth2Client.setCredentials({ refresh_token: process.env.GMAIL_REFRESH_TOKEN });
 
 module.exports.sendResetEmail = async (req, res, next) => {
   try {
@@ -76,52 +86,55 @@ module.exports.sendResetEmail = async (req, res, next) => {
       }).save();
     }
     // const link = `${process.env.BASE_URL}/resetPassword/${user._id}/${token.token}`;
-    const link = `localhost:3000/resetPassword/${user._id}/${token.token}`;
-    
-    // await sendEmail(user.email, "Password reset", link);
-    req.flash("success","password reset link sent to your email account");
-    console.log(link);
-    res.redirect('login')
+    // const link = `localhost:3000/resetPassword/${user._id}/${token.token}`;
+  
+
+    // const result = await transporter.sendMail(mailOpetions);
+    const toEmail = email
+    // const htmlText = `<h1>Reset Password</h1><p>Please click this <a href=${link}>Link</a></p><p>${link}</p>`
+    // await sendEmail(toEmail,htmlText);
+    req.flash("success", "password reset link sent to your email account");
+   
+    res.redirect("login");
   } catch (e) {
     req.flash("error", e.message);
     res.redirect("forgotPassword");
   }
 };
 
-
 // render resetpassword page
-module.exports.renderResetPassword = (req, res) =>{
-    res.render('users/resetPassword');
-}
+module.exports.renderResetPassword = (req, res) => {
+  res.render("users/resetPassword");
+};
 
 // post resetpassword page
 
 module.exports.resetPassword = async (req, res) => {
-    try {
-        const redirectUrl = req.session.returnTo || "/login";
-        const user = await User.findById(req.params.userId);
-        if (!user) {
-            req.flash("error", "invalid link or expired");
-            return res.redirect(redirectUrl);
-        }
-
-        const token = await Token.findOne({
-            userId: user._id,
-            token: req.params.token,
-        });
-        if (!token) {
-            req.flash("error", "invalid link or expired");
-            return res.redirect(redirectUrl);
-        }
-        // upate password without old password
-        await user.setPassword(req.body.password);
-        await user.save();
-        await token.delete();
-        req.flash("success", "password reset sucessfully.");
-        res.redirect('/login');
-    } catch (error) {
-        req.flash("error", error.message);
-        console.log(error);
-        res.redirect('/login');
+  try {
+    const redirectUrl = req.session.returnTo || "/login";
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      req.flash("error", "invalid link or expired");
+      return res.redirect(redirectUrl);
     }
-}
+
+    const token = await Token.findOne({
+      userId: user._id,
+      token: req.params.token,
+    });
+    if (!token) {
+      req.flash("error", "invalid link or expired");
+      return res.redirect(redirectUrl);
+    }
+    // upate password without old password
+    await user.setPassword(req.body.password);
+    await user.save();
+    await token.delete();
+    req.flash("success", "password reset sucessfully.");
+    res.redirect("/login");
+  } catch (error) {
+    req.flash("error", error.message);
+    console.log(error);
+    res.redirect("/login");
+  }
+};
