@@ -35,8 +35,9 @@ const reviewsRoutes = require('./routes/reviews');
 const usersRoutes = require('./routes/users')
 const profileRoutes = require('./routes/profile')
 // end routes
-// process.env.DB_URL || 
-const dbURL= 'mongodb://localhost:27017/my-playgrounds'
+ 
+const dbURL= process.env.DB_URL || 'mongodb://localhost:27017/my-playgrounds'
+ 
 const serect = process.env.SERECT || "thisisaserect!!"
 
 mongoose.connect(dbURL, {
