@@ -40,7 +40,7 @@ dbURL= process.env.DB_URL || 'mongodb://localhost:27017/my-playgrounds'
  
 const serect = process.env.SERECT || "thisisaserect!!"
 
-mongoose.connect(dbURL, {
+mongoose.connect('mongodb://localhost:27017/my-playgrounds', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
@@ -101,54 +101,55 @@ app.use(methodOverride('_method'));
 
 // security
 app.use(mongoSanitize())
-app.use(helmet());
+// app.use(helmet());
 // end security
 // conetent security policy
-const scriptSrcUrls = [
+// const scriptSrcUrls = [
 
-    "https://api.tiles.mapbox.com/",
-    "https://api.mapbox.com/",
+//     "https://api.tiles.mapbox.com/",
+//     "https://api.mapbox.com/",
 
-    "https://cdnjs.cloudflare.com/"
+//     "https://cdnjs.cloudflare.com/"
     
-];
-const styleSrcUrls = [
+// ];
+// const styleSrcUrls = [
 
-    "https://api.mapbox.com/",
-    "https://api.tiles.mapbox.com/",
-    "https://fonts.googleapis.com/"
+//     "https://api.mapbox.com/",
+//     "https://api.tiles.mapbox.com/",
+//     "https://fonts.googleapis.com/"
    
-];
+// ];
 
-const connectSrcUrls = [
+// const connectSrcUrls = [
 
-    "https://api.mapbox.com/",
-    "https://a.tiles.mapbox.com/",
-    "https://b.tiles.mapbox.com/",
-    "https://events.mapbox.com/",
+//     "https://api.mapbox.com/",
+//     "https://a.tiles.mapbox.com/",
+//     "https://b.tiles.mapbox.com/",
+//     "https://events.mapbox.com/",
+//     "https://images.unsplash.com/",
     
-];
-const fontSrcUrls = [];
-app.use(
-    helmet.contentSecurityPolicy({
-        directives: {
-            defaultSrc: [],
-            connectSrc: ["'self'", ...connectSrcUrls],
-            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-            workerSrc: ["'self'", "blob:"],
-            objectSrc: [],
-            imgSrc: [
-                "'self'",
-                "blob:",
-                "data:",
-                `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/`, //SHOULD MATCH CLOUDINARY ACCOUNT! 
-                "https://images.unsplash.com/",
-            ],
-            fontSrc: ["'self'", ...fontSrcUrls],
-        },
-    })
-);
+// ];
+// const fontSrcUrls = [];
+// app.use(
+//     helmet.contentSecurityPolicy({
+//         directives: {
+//             defaultSrc: [],
+//             connectSrc: ["'self'", ...connectSrcUrls],
+//             scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+//             styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+//             workerSrc: ["'self'", "blob:"],
+//             objectSrc: [],
+//             imgSrc: [
+//                 "'self'",
+//                 "blob:",
+//                 "data:",
+//                 `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/`, //SHOULD MATCH CLOUDINARY ACCOUNT! 
+//                 "https://images.unsplash.com/",
+//             ],
+//             fontSrc: ["'self'", ...fontSrcUrls],
+//         },
+//     })
+// );
 
 
 // flash start

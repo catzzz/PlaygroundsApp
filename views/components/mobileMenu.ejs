@@ -18,12 +18,7 @@
         <!-- profile link -->
         <a href="/profile"
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">
-          <div class="flex items-center gap-3">
-            <img class="h-10 w-10 rounded-full" src="<%=currentUser.images.thumbnail%>" alt="">
-            <div class="text-base font-medium leading-none text-gray-400">
-              <%= currentUser.username %>
-            </div>
-          </div>
+          <%- include('../components/userLabel.ejs',{images:currentUser.images, username:currentUser.username}) %>
         </a>
       </div>
       <!-- logout link -->

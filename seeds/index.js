@@ -4,6 +4,8 @@ const playgroundImages= require('./playgroundImages');
 const { places, descriptors } = require('./seedHelpers');
 const Playground = require('../models/playground');
 
+
+
 mongoose.connect('mongodb://localhost:27017/my-playgrounds', {
     useNewUrlParser: true,
     useCreateIndex: true,

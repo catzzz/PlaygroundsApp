@@ -40,7 +40,7 @@
                 </p>
                 <p class="mb-2">Review: <%= review.body %>
                 </p>
-                <%- include('../components/userLabel.ejs',{images:playground.author.images, username:playground.author.username}) %>
+                <%- include('../components/userLabel.ejs',{images:review.author.images, username:review.author.username}) %>
                
                 <!-- You have to be logged in to be abled to edit and delete -->
                 <% if(currentUser && review.author.equals(currentUser._id)){%>
