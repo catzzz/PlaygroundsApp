@@ -9,6 +9,8 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 # Bee's Playgrounds
 
+# [Live Demo](https://young-basin-40954.herokuapp.com/)
+
 A `Bee's playgrounds` theme for collecting playgrounds that user've been. The playgrounds will show geo location, add and edit pictures, reviews and rating of the playground.
 
 
